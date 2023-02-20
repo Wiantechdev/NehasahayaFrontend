@@ -1,0 +1,260 @@
+<div class="sigma_header-bottom filter-div">
+    <div class="sigma_header-bottom-inner">
+        <div class="col-md-12 container-fluid">
+            <div class="row">
+
+                <div class=" col-xl-1 col-lg-2 col-md-2 filter-icon-section">
+                    <button _ngcontent-jgc-c263="" type="button" aria-expanded="false" aria-label="Main navigation menu"
+                        data-testid="cypress-headernav-profile" class="user_btn .filter_icon">
+                        <div _ngcontent-jgc-c263="" class="dir dir-ltr">
+                            <div class="filter_icon">
+                                <img src="assets/layout/images/pages/filter-icon.png" alt="">
+                            </div>
+                            Filter
+                        </div>
+                    </button>
+
+                </div>
+                <div class="col-md-11  col-xl-11  col-lg-10 col-md-10  filter-slider">
+                    <p-carousel [value]="categoryMenuList" [numVisible]="12" [numScroll]="12" [circular]="false"
+                        [showIndicators]="false" [responsiveOptions]="carouselResponsiveOptions">
+
+                        <ng-template let-categoryMenu pTemplate="item">
+
+                            <div (click)="onClickCategory(categoryMenu)" class="product-item {{categoryMenu.show}}">
+                                <div class="product-item-content">
+                                    <div class="p-mb-1">
+                                        <img src="{{categoryMenu.categoryImage}}" [alt]="categoryMenu.name"
+                                            class="product-image" />
+                                    </div>
+                                    <div>
+                                        <h4 class="p-mb-1">{{categoryMenu.name}}</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </ng-template>
+                    </p-carousel>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Listings Slider Start -->
+<div class="section section-padding sigma_header listings">
+    <div class="section-title-wrap section-header flex-header  text-center" style="justify-content: center;">
+        <div class="section-title-text text-center">
+
+            <h2 class="title">Latest Venues</h2>
+        </div>
+
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 venue_listing latestVenue_listing">
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-6" *ngFor="let item of venueList">
+                            <div class="listing">
+                                <div class="listing-thumbnail">
+                                    <p-galleria [(value)]="item.venueImage" [responsiveOptions]="responsiveOptions"
+                                        [containerStyle]="{'max-width': '100%;'}" [numVisible]="5" [circular]="true"
+                                        [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true"
+                                        [showItemNavigatorsOnHover]="true" [showIndicatorsOnItem]="true">
+                                        <ng-template pTemplate="item" let-item>
+                                            <img [src]="item.venue_image_src" style="width:100%; display: block;" />
+                                        </ng-template>
+                                    </p-galleria>
+                                    <div class="listing-badges">
+                                        <!-- <span class="listing-badge featured" *ngIf="item.star"> <i class="pi pi-star"></i>
+                                        </span> -->
+                                        <span class="listing-badge sale" *ngIf="item.featured">Feature</span>
+                                        <!-- <span class="listing-badge pending" *ngIf="item.pending">Pending</span>
+                                        <span class="listing-badge rent" *ngIf="item.courtmarriage">Court Marriage</span> -->
+                                    </div>
+                                    <div class="listing-controls">
+                                        <a href="#" class="favorite"><i class="pi pi-heart"></i></a>
+                                        <!-- <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a> -->
+                                    </div>
+                                </div>
+                                <div class="listing-body">
+                                    <h5 class="listing-title"> <a (click)="getVenueDetails(item.id)"
+                                            [title]="item.name">{{item.name}}</a> </h5>
+                                    <div class="short-discription">
+                                        <span class="read-more" (click)="getVenueDetails(item.id)">
+                                            <p class="listing-text" [innerHTML]="item.shortdescription"> </p>
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class=" price-icons">
+                                        <div class="price-div">
+                                            <div class="acr-listing-icons">
+                                                <div class="acr-listing-icon" placement="top" ngbTooltip="Price">
+                                                    <i class="flaticon-price-tags"></i>
+                                                    <span class="acr-listing-icon-value" tooltipPosition="top"
+                                                        pTooltip="Price">₹{{item.venuePrice |
+                                                        number:'1.2-2'}}</span>
+                                                </div>
+                                                <div class="acr-listing-icon" tooltipPosition="top" pTooltip="Guests">
+                                                    <i class="pi pi-users"></i>
+                                                    <span class="acr-listing-icon-value">{{item.capacity}}</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="category-icon">
+                                            <div class="location">
+                                                <span class="icon">
+                                                    <img src="assets/img/svg/location-icon.svg">
+                                                </span>
+                                                <span class="city">{{item.cityname}}</span>
+                                            </div>
+                                            <!-- <p-avatarGroup label="P">
+                                            <p-avatar image="assets/demo/images/venue/wedding.png" shape="circle"  tooltipPosition="top"  pTooltip="Wedding"></p-avatar>
+                                            <p-avatar image="assets/demo/images/venue/eng.png" shape="circle" tooltipPosition="top"  pTooltip="Reception"></p-avatar>
+                                            <p-avatar image="assets/demo/images/venue/reception.png" shape="circle"  tooltipPosition="top"  pTooltip="Engagement"></p-avatar>
+                                            <p-avatar label="+2" shape="circle"></p-avatar>
+                                        </p-avatarGroup> -->
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="listing-gallery-wrapper">
+                                        <a (click)="getVenueDetails(item.id)" class=" btn-custom btn-sm secondary">View
+                                            Details</a>
+
+                                        <div class="icon-review"> <img src="assets/img/svg/google.png" alt="">
+                                            <p-rating [(ngModel)]="val4" readonly="true" [cancel]="false"></p-rating>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <p-paginator [rows]="8" #paginator [totalRecords]="totalRecords" (onPageChange)="getVenueList($event)"
+                    [rowsPerPageOptions]=" pagination"></p-paginator>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+<!-- Listings Slider End -->
+
+<!-- Assured Venue Start -->
+<div *ngIf="assuredVenueList.length > 0" class="section bg-white Assured-Venues latest-venue-section pb-0 pr-3 pl-3">
+    <div class="section-title-wrap section-header flex-header  text-center" style="justify-content: center;">
+        <div class="section-title-text text-center">
+
+            <h2 class="title">Eazy Venue Assured Venues</h2>
+        </div>
+
+    </div>
+    <!-- <app-agents></app-agents> -->
+    <div class="col-md-12 venue_listing">
+        <p-carousel [value]="assuredVenueList" [numVisible]="5" [numScroll]="5" [circular]="false"
+            [responsiveOptions]="listing">
+            <ng-template let-assuredVenue pTemplate="item">
+
+                <div class="product-item">
+                    <div class="product-item-content listing">
+
+                        <div class="listing-thumbnail">
+                            <p-galleria [(value)]="assuredVenue.venueImage" [responsiveOptions]="responsiveOptions"
+                                [containerStyle]="{'max-width': '100%;'}" [numVisible]="5" [circular]="true"
+                                [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true"
+                                [showItemNavigatorsOnHover]="true" [showIndicatorsOnItem]="true">
+                                <ng-template pTemplate="item" let-item>
+                                    <img [src]="item.venue_image_src" style="width:100%; display: block;" />
+                                </ng-template>
+                            </p-galleria>
+                            <div class="listing-badges">
+                                <!-- <span class="listing-badge featured" *ngIf="item.star"> <i class="pi pi-star"></i>
+                    </span> -->
+                                <span class="listing-badge sale" *ngIf="assuredVenue.featured">Feature</span>
+                                <span class="listing-badge Assured" *ngIf="assuredVenue.assured"> <span class="icon">
+                                        <img src="assets/img/svg/Assured.svg" alt=""></span> Assured</span>
+
+                                <!-- <span class="listing-badge pending" *ngIf="item.pending">Pending</span>
+                    <span class="listing-badge rent" *ngIf="item.courtmarriage">Court Marriage</span> -->
+                            </div>
+                            <div class="listing-controls">
+                                <a href="#" class="favorite"><i class="pi pi-heart"></i></a>
+                                <!-- <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a> -->
+                            </div>
+                        </div>
+                        <div class="listing-body">
+                            <h5 class="listing-title"> <a (click)="getVenueDetails(assuredVenue.id)"
+                                    [title]="assuredVenue.name">{{assuredVenue.name}}</a> </h5>
+                            <div class="short-discription">
+                                <span class="read-more" (click)="getVenueDetails(assuredVenue.id)">
+                                    <p class="listing-text" [innerHTML]="assuredVenue.shortdescription"> </p>
+                                </span>
+
+                            </div>
+
+                            <div class="price-icons col-md-12">
+                                <div class="price-div">
+                                    <div class="acr-listing-icons">
+                                        <div class="acr-listing-icon" placement="top" ngbTooltip="Price">
+                                            <i class="flaticon-price-tags"></i>
+                                            <span class="acr-listing-icon-value" tooltipPosition="top"
+                                                pTooltip="Price">₹{{assuredVenue.venuePrice |
+                                                number:'1.2-2'}}</span>
+                                        </div>
+                                        <div class="acr-listing-icon" tooltipPosition="top" pTooltip="Guests">
+                                            <i class="pi pi-users"></i>
+                                            <span class="acr-listing-icon-value">{{assuredVenue.capacity}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="category-icon">
+                                    <div class="location">
+                                        <span class="icon">
+                                            <img src="assets/img/svg/location-icon.svg">
+                                        </span>
+                                        <span class="city">{{assuredVenue.cityname}}</span>
+                                    </div>
+                                    <!-- <p-avatarGroup label="P">
+                            <p-avatar image="assets/demo/images/venue/wedding.png" shape="circle"  tooltipPosition="top"  pTooltip="Wedding"></p-avatar>
+                            <p-avatar image="assets/demo/images/venue/eng.png" shape="circle" tooltipPosition="top"  pTooltip="Reception"></p-avatar>
+                            <p-avatar image="assets/demo/images/venue/reception.png" shape="circle"  tooltipPosition="top"  pTooltip="Engagement"></p-avatar>
+                            <p-avatar label="+2" shape="circle"></p-avatar>
+                        </p-avatarGroup> -->
+                                </div>
+                            </div>
+                            <div class="listing-gallery-wrapper">
+                                <a (click)="getVenueDetails(assuredVenue.id)" class=" btn-custom btn-sm secondary">View
+                                    Details</a>
+
+                                <div class="icon-review"> <img src="assets/img/svg/google.png" alt=""> <p-rating
+                                        [(ngModel)]="val4" readonly="true" [cancel]="false"></p-rating> </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+
+</div>
+<!-- Assured Venue End -->

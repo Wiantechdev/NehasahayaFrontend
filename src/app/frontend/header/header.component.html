@@ -1,0 +1,366 @@
+<header class="sigma_header style-4 can-sticky" id="can-sticky">
+    <div class="sigma_header-middle">
+        <div class="container-fluid">
+            <p-toast key="toastmsg"></p-toast>
+            <div class="navbar">
+                <!-- <div class="sigma_header-controls style-2 d-none d-lg-block">
+                  <ul class="sigma_header-controls-inner">
+                  
+                      <li class="aside-toggle aside-trigger-right desktop-toggler">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                      </li>
+                  </ul>
+              </div> -->
+                <div class="sigma_logo-wrapper">
+                    <a class="sigma_logo" routerLink="/">
+                        <img src="assets/layout/images/pages/logo.png" alt="logo" width="80px" height="80px">
+                        <div class="name">
+                            <h1>Eazy Venue</h1>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="sigma_header-controls style-2">
+                    <ul class="sigma_header-controls-inner">
+                        <li class="search-trigger header-controls-item d-block d-lg-none">
+                            <a class="sigma_header-control-search" title="Search" (click)="toggleSearch()">
+                                <svg _ngcontent-xtj-c266="" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true" role="presentation" focusable="false"
+                                    style="display: block; height: 100%; width: 100%; fill: currentcolor;">
+                                    <path _ngcontent-xtj-c266=""
+                                        d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class=" d-lg-block live-location">
+                            <div class="sigma_header-controls style-2 ">
+                                <!-- <button type="button" class="user_btn" aria-expanded="false" aria-label="Main navigation menu" data-testid="cypress-headernav-profile">
+                            <div class="text">
+                                <div class="icon">
+                                    <img  src="assets/img/svg/location-icon.svg">
+                                </div>
+                                <div class="location-result">
+                                    <p>Live Location</p>
+                                    <span>Andheri</span>
+                                </div>
+                                
+                            </div> 
+                            </button>   -->
+                                <p-button (click)="op.toggle($event)" class="user_btn">
+                                    <div class="text">
+                                        <div class="icon">
+                                            <img src="assets/img/svg/location-icon.svg">
+                                        </div>
+                                        <div class="location-result">
+                                            <p>Live Location</p>
+                                            <span>{{selectedArea}}</span>
+                                        </div>
+
+                                    </div>
+
+                                </p-button>
+
+                                <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '300px'}">
+                                    <ng-template pTemplate>
+                                        <h5>Select location</h5>
+                                        <p-dropdown [options]="areas" [(ngModel)]="selectedCountry" optionLabel="name"
+                                            (onChange)="onAreaChange($event)" [filter]="true" filterBy="name"
+                                            [showClear]="true" placeholder="Select a area">
+                                            <ng-template pTemplate="selectedItem">
+                                                <div class="country-item country-item-value" *ngIf="areas">
+                                                    <div>{{selectedCountry.name}}</div>
+                                                </div>
+                                            </ng-template>
+                                            <ng-template let-country pTemplate="item">
+                                                <div class="country-item">
+                                                    <div>{{country.name}}</div>
+                                                </div>
+                                            </ng-template>
+                                        </p-dropdown>
+                                        <div class="col-md-12 footer-section">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="assets/img/svg/my-location.svg">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6>Use Current Location</h6>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </ng-template>
+                                </p-overlayPanel>
+                            </div>
+                        </li>
+
+                        <li class="d-none d-lg-block user-login-div" *ngIf="isLoggedIn">
+                            <div class="sigma_header-controls style-2" (click)="account.toggle($event)">
+                                <button type="button" class="user_btn" aria-expanded="false"
+                                    aria-label="Main navigation menu" data-testid="cypress-headernav-profile">
+                                    <div class=" dir dir-ltr"><svg viewBox="0 0 32 32"
+                                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+                                            focusable="false"
+                                            style="display: block; fill: #dddddd; height: 20px; width: 20px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                            <g fill="none" fill-rule="nonzero">
+                                                <path d="m2 16h28"></path>
+                                                <path d="m2 24h28"></path>
+                                                <path d="m2 8h28"></path>
+                                            </g>
+                                        </svg></div>
+                                    <div class="user_image">
+                                        <img src="assets/img/svg/user-image.svg" alt="">
+                                    </div>
+                                </button>
+                            </div>
+                            <p-overlayPanel #account [showCloseIcon]="true" [style]="{width: '300px'}"
+                                class="user-overpanel">
+                                <div class="account-list">
+                                    <ul>
+                                        <li class="list-account" *ngIf="isLoggedIn">
+                                            <div class="list-items" (click)="myProfile()">
+                                                Orders / Wish List
+                                            </div>
+                                        </li>
+                                        <li class="list-account" *ngIf="isLoggedIn">
+                                            <div class="list-items" (click)="myProfile()">
+                                                Payment Status
+                                            </div>
+                                        </li>
+                                        <li class="list-account" *ngIf="isLoggedIn">
+                                            <div class="list-items" (click)="myProfile()">
+                                                To Do List
+                                            </div>
+                                        </li>
+                                        <li class="list-account" *ngIf="isLoggedIn">
+                                            <div class="list-items" (click)="myProfile()">
+                                                Profile Information
+                                            </div>
+                                        </li>
+                                        <li class="list-account" *ngIf="isLoggedIn">
+                                            <div class="list-items" (click)="signOut()">
+                                                Sign Out
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </p-overlayPanel>
+
+                        </li>
+                        <li class="" *ngIf="!isLoggedIn">
+
+                            <div *ngIf="!isLoggedIn" class="sigma_header-controls style-2"
+                                (click)="showLoginRegisterDialog()">
+                                <button type="button" class="user_btn" aria-expanded="false"
+                                    aria-label="Main navigation menu" data-testid="cypress-headernav-profile">
+                                    <div class=" dir dir-ltr"><svg viewBox="0 0 32 32"
+                                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+                                            focusable="false"
+                                            style="display: block; fill: #dddddd; height: 20px; width: 20px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                            <g fill="none" fill-rule="nonzero">
+                                                <path d="m2 16h28"></path>
+                                                <path d="m2 24h28"></path>
+                                                <path d="m2 8h28"></path>
+                                            </g>
+                                        </svg></div>
+                                    <div class="user_image"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true" role="presentation" focusable="false"
+                                            style="display: block; height: 100%; width: 100%; fill: currentcolor;">
+                                            <path
+                                                d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z">
+                                            </path>
+                                        </svg></div>
+                                </button>
+                            </div>
+                        </li>
+
+                        <li class="aside-toggle aside-trigger">
+                            <div class="dir dir-ltr">
+                                <div class="filter_icon"><img src="assets/layout/images/pages/filter-icon.png" alt="">
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p-dialog [(visible)]="loginRegisterModal" [modal]="true" [style]="{width: '38vw'}"
+        [breakpoints]="{'960px': '60vw', '640px': '100vw'}" [baseZIndex]="10000" [draggable]="false"
+        [resizable]="false">
+        <p-toast key="usertoastmsg"></p-toast>
+        <div class="login-popup">
+            <p-tabView [(activeIndex)]="activeIndex">
+                <p-tabPanel header="Login">
+                    <div class="forms">
+                        <form [formGroup]="loginForm" *ngIf="this.loginForm" (ngSubmit)="onSubmit()">
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" formControlName="email" class="form-control form-control-light"
+                                    placeholder="Enter your Email" type="text"
+                                    [ngClass]="{ 'is-invalid': loginFormSubmitted && loginf.email.errors }" required>
+                                <div *ngIf="loginFormSubmitted && loginf.email.errors" class="invalid-feedback">
+                                    <div *ngIf="loginf.email.errors.required">Email is required</div>
+                                    <div *ngIf="loginf.email.errors.email">Enter valid email address</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input formControlName="password" class="form-control form-control-light"
+                                    placeholder="Enter your password" type="password"
+                                    [ngClass]="{ 'is-invalid': loginFormSubmitted && loginf.password.errors }"
+                                    autocomplete="on" required>
+                                <div *ngIf="loginFormSubmitted && loginf.password.errors" class="invalid-feedback">
+                                    <div *ngIf="loginf.password.errors.required">Password is required</div>
+                                    <div *ngIf="loginf.password.errors.minlength">Password must be at least 6 characters
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="popup-button">
+                                <p-button type="submit" label="Login" class="p-button-text  secondary"></p-button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="forgot-password">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                </p-tabPanel>
+
+
+                <p-tabPanel header="Register">
+                    <div class="forms">
+                        <form [formGroup]="signUpForm" *ngIf="this.signUpForm" (ngSubmit)="onSignupSubmit()">
+                            <div class="forms">
+                                <div class=" form-group form-row">
+                                    <div class="col">
+                                        <label>Name <span class="mandatory-fields">*</span></label>
+                                        <input type="text" formControlName="name" class="form-control"
+                                            placeholder="Enter your name" value="" required
+                                            [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                            <div *ngIf="f.name.errors.required">Name is required</div>
+                                            <div *ngIf="f.name.errors">Name is not valid</div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col">
+                                                                    <label>Last Name</label>
+                                                                    <input type="text" formControlName="lastName" placeholder="Last Name*"
+                                                                        class="form-control"
+                                                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" required>
+                                                                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                                                        <div *ngIf="f.lastName.errors">Only Alphabets allowed</div>
+                                                                    </div>
+                                                                </div> -->
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="col">
+                                        <label>Email<span class="mandatory-fields">*</span></label>
+                                        <input type="email" autocomplete="on" formControlName="email"
+                                            placeholder="Enter email address" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                            <div *ngIf="f.email.errors.required">Email is required</div>
+                                            <div *ngIf="f.email.errors.email">Enter valid email address</div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label>Mobile Number<span class="mandatory-fields">*</span></label>
+                                        <p-inputNumber mode="decimal" inputId="mobileNumber" [useGrouping]="false"
+                                            formControlName="mobileNumber"
+                                            [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" required
+                                            placeholder="Enter your mobile number">
+                                        </p-inputNumber>
+                                        <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.mobileNumber.errors.required">Mobile number is required
+                                            </div>
+                                            <div *ngIf="f.mobileNumber.errors">Invalid Mobile number
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="col">
+                                        <label>Password<span class="mandatory-fields">*</span></label>
+                                        <input type="password" formControlName="password"
+                                            placeholder="Enter your password" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" value=""
+                                            autocomplete="on" required>
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.required">Password is required</div>
+                                            <div *ngIf="f.password.errors">Password should contains at least 1 digit, 1
+                                                lowercase, 1 uppercase, 1 symbol.
+                                                Length between 6 to 20.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label>Confirm Password<span class="mandatory-fields">*</span></label>
+                                        <input type="password" formControlName="confirmPassword"
+                                            placeholder="Confirm Password" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+                                            autocomplete="on" required>
+                                        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                            <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required
+                                            </div>
+                                            <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-group BirthDate Gender">
+                                    <div class="col">
+                                        <label>Birth Date</label>
+                                        <p-calendar appendTo="body" class="form-control" formControlName="dob"
+                                            [showIcon]="true" inputId="icon" placeholder="Select birth date"
+                                            [minDate]="birthMinValue" [maxDate]="birthMaxValue" monthNavigator="true"
+                                            yearNavigator="true" yearRange="{{birthYearRange}}" class="p-calendar"
+                                            inputId="calendar" [defaultDate]="birthYearDefaultDate"
+                                            dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
+                                    </div>
+                                    <!-- <div class="col">
+                                        <label>Gender</label>
+                                        <div *ngFor="let gender of genders" class="">
+                                            <p-radioButton [inputId]="gender.key" formControlName="gender"
+                                                [value]="gender" [(ngModel)]="selectedGender"
+                                                (onClick)="onGenderSelect(gender, $event)">
+                                            </p-radioButton>&nbsp;&nbsp;
+                                            <label [for]="gender.key">{{gender.name}}</label>&nbsp;&nbsp;
+                                        </div>
+                                        <div class="mandatory-feilds" *ngIf="showGenderError">
+                                            Please, Select Gender.
+                                        </div>
+                                    </div> -->
+                                </div>
+
+                            </div>
+                            <div class="popup-button">
+                                <p-button type="submit" label="Register" class="p-button-text"></p-button>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </p-tabPanel>
+
+            </p-tabView>
+        </div>
+
+    </p-dialog>
+    <div class="sigma_header-bottom">
+
+        <div class="sigma_header-bottom-inner">
+            <app-navigation></app-navigation>
+        </div>
+    </div>
+</header>

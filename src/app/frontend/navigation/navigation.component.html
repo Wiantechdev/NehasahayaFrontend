@@ -1,0 +1,101 @@
+<div class="navigation-search-bar">
+    <div class="p-fluid p-grid p-formgrid">
+
+        <p-toast></p-toast>
+        <div class=" top-search-bar-fillter">
+
+            <div class="row">
+                <div class="col-md search-bar-locations p-p-0">
+                    <div class="row">
+                        <div class="city-field col-md-4 p-p-0">
+                            <label for="" class="icons-image"> <img src="assets/img/svg/location.svg"> </label>
+                            <label class="p-dropdown"><span class=" p-dropdown-label">Mumbai</span></label>
+                            <!-- <p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Mumbai"
+                                optionLabel="name" [showClear]="true"></p-dropdown> -->
+                            <!-- <p-multiSelect [options]="groupedCities" [(ngModel)]="selectedCity3" placeholder="Mumbai"
+                                [group]="true" display="chip">
+                                <ng-template let-group pTemplate="group">
+                                    <div class="p-d-flex p-ai-center">
+                                        <span>{{group.label}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-multiSelect> -->
+                        </div>
+                        <div class="serch-bar-field col-md-8  p-p-0">
+                            <span class="p-fluid">
+                                <p-autoComplete [(ngModel)]="selectedCountries" [suggestions]="filteredCountries"
+                                    (completeMethod)="filterCountry($event)" field="name" placeholder="Search"
+                                    [multiple]="true">
+                                </p-autoComplete>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 p-p-0">
+                    <div class="Guest-field">
+                        <label for="" class="icons-image"> <img src="assets/img/svg/users.svg"> </label>
+                        <p-dropdown class="" [options]="filterCapacityArray" placeholder="Guest Count"
+                            optionLabel="label" (onChange)="onCapacitySelect($event)"></p-dropdown>
+                        <!-- <p-button [label]="selectedProduct ? selectedProduct.name : 'Guest Count'"
+                            (click)="op.toggle($event)"></p-button> -->
+
+
+                    </div>
+                    <p-overlayPanel #op [showCloseIcon]="false" [style]="{width: '450px'}">
+                        <ng-template pTemplate>
+                            <div class="p-field p-col-12 p-md-12 gest-count-module">
+                                <div class="gets-count-list">
+                                    <label for="horizontal">Adults</label>
+                                    <p-inputNumber [(ngModel)]="value18" [showButtons]="true" buttonLayout="horizontal"
+                                        inputId="horizontal" spinnerMode="horizontal" [step]="10"
+                                        decrementButtonClass="left-button" incrementButtonClass="right-button"
+                                        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                                    </p-inputNumber>
+                                </div>
+                                <div class="gets-count-list">
+                                    <label for="horizontal">Children</label>
+                                    <p-inputNumber [(ngModel)]="value19" [showButtons]="true" buttonLayout="horizontal"
+                                        inputId="horizontal" spinnerMode="horizontal" [step]="10"
+                                        decrementButtonClass="left-button" incrementButtonClass="right-button"
+                                        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                                    </p-inputNumber>
+                                </div>
+                                <div class="gets-count-list">
+                                    <label for="horizontal">Infants</label>
+                                    <p-inputNumber [(ngModel)]="value20" [showButtons]="true" buttonLayout="horizontal"
+                                        inputId="horizontal" spinnerMode="horizontal" [step]="10"
+                                        decrementButtonClass="left-button" incrementButtonClass="right-button"
+                                        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                                    </p-inputNumber>
+                                </div>
+                                <div class="gets-count-list">
+                                    <label for="horizontal">Pets</label>
+                                    <p-inputNumber [(ngModel)]="value21" [showButtons]="true" buttonLayout="horizontal"
+                                        inputId="horizontal" spinnerMode="horizontal" [step]="10"
+                                        decrementButtonClass="left-button" incrementButtonClass="right-button"
+                                        incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                                    </p-inputNumber>
+                                </div>
+                            </div>
+
+                        </ng-template>
+                    </p-overlayPanel>
+
+                </div>
+                <div class="p-field p-col-12 p-md-3 p-p-0 mb-0 calendar-div">
+                    <label for="" class="icons-image"> <img src="assets/img/svg/date.svg"> </label>
+                    <p-calendar [(ngModel)]="rangeDates" selectionMode="range" placeholder="Date" [readonlyInput]="true"
+                        inputId="range" [numberOfMonths]="1"></p-calendar>
+
+                    <button routerLink="/venue-list" pButton pRipple type="button" icon="pi pi-search"
+                        class="p-button-rounded p-button-danger secondary btn-custom secondary"></button>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

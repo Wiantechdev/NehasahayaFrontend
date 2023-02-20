@@ -1,0 +1,515 @@
+<div class="listing-banner">
+    <div>
+        <div class="subheader bg-cover bg-center dark-overlay"
+            style="background-image: url(&quot;assets/img/subheader.jpg&quot;);">
+            <div class="container">
+                <div class="subheader-inner"><!---->
+                    <!-- <h1 class="text-white">Weddings List</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a routerlink="/"
+                                    href="/themes/templatemoster/angular/whyknot/"><i class="fas fa-home"></i></a></li>
+                          
+                    <li aria-current="page" class="breadcrumb-item active">
+                        Weddings List</li>
+                    </ol>
+                    </nav> -->
+                </div>
+            </div>
+        </div>
+    </div><!---->
+    <div class="banner-image">
+        <img src="../../" alt="">
+    </div>
+</div>
+<div class="section">
+    <div class="container-fluid ">
+        <div class="listing-page">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="sidebar Filter-siderbar sidebar-left">
+                        <div class="sidebar-widget">
+                            <h5>Venues Filter</h5>
+                            <p-accordion>
+                                <p-accordionTab header="Price Range" [selected]="true">
+                                    <div class="min-max-price-heading">
+                                        <div class="min-heading">
+                                            <h5>Min-price</h5> <span>{{' ₹ ' + venuePriceRangeValues[0]}}</span>
+                                        </div>
+                                        <div class="max-heading">
+                                            <h5>Max-price</h5> <span>{{ ' ₹ ' + venuePriceRangeValues[1]}}</span>
+                                        </div>
+                                    </div>
+                                    <!-- <p-slider [(ngModel)]="venuePriceRangeValues" [range]="true"></p-slider> -->
+                                    <div class="price-input">
+                                        <!-- <form> -->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Min Price </label>
+                                                <!-- <input type="number" class="form-control" id="inputEmail4"
+                                                    placeholder="{{ venuePriceRangeValues[0]}}" value="{{ venuePriceRangeValues[0]}}"> -->
+                                                <input type="number" #minVenuePriceInput [style]="{'width':'100px'}"
+                                                    [value]="venuePriceRangeValues[0]" [step]="1000"
+                                                    [min]="venuePriceRangeValues[0]" [max]="venuePriceRangeValues[1]"
+                                                    (change)="onVenuePriceChange()">
+
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputPassword4">Max Price</label>
+                                                <input type="number" #maxVenuePriceInput [style]="{'width':'100px'}"
+                                                    [value]="venuePriceRangeValues[1]" [step]="1000"
+                                                    [min]="venuePriceRangeValues[0]" [max]="venuePriceRangeValues[1]"
+                                                    (change)="onVenuePriceChange()">
+                                            </div>
+                                        </div>
+                                        <!-- </form> -->
+                                    </div>
+                                </p-accordionTab>
+                                <p-accordionTab header="Occasions" [selected]="true">
+                                    <!-- <div class="slider-Occasions">
+                                        <div class="Occasions-fillter">
+                                            <div class="image">
+                                                <img src="http://103.204.131.217:3006/uploads/categoryPic/wedding.png"
+                                                    alt="">
+                                            </div>
+                                            <h4 class="title">
+                                                Wedding
+                                            </h4>
+                                        </div>
+                                    </div> -->
+                                    <div class="right-slider-filter">
+                                        <div class="col-md-12  col-xl-12  col-lg-12 col-md-12 p-p-0 pt-0 pb-0">
+                                            <p-carousel [value]=" categoryMenuList" [numVisible]="4" [numScroll]="4"
+                                                [circular]="false" [showIndicators]="false"
+                                                [responsiveOptions]="carouselResponsiveOptions">
+
+                                                <ng-template let-categoryMenu pTemplate="item">
+
+                                                    <div [ngClass]="categoryMenu.selected ? 'category-active' : ''"
+                                                        class="product-item">
+                                                        <div (click)="onClickCategory(categoryMenu)"
+                                                            class="product-item-content">
+                                                            <p-avatarGroup styleClass="mb-4">
+                                                                <p-avatar image="{{categoryMenu.categoryImage}}"
+                                                                    size=" large" shape="circle"
+                                                                    pTooltip={{categoryMenu.name}} tooltipPosition="top"
+                                                                    [style]="{'width':'50px', 'height':'50px','color': '#ffffff', 'background-color':'#fff' , 'box-shadow' : 'inset 0px 1px 2px #00000029, 0px 3px 6px #00000029'}"></p-avatar>
+                                                            </p-avatarGroup>
+                                                            <div>
+                                                                <h4 class="p-mb-1">{{categoryMenu.name}}</h4>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </ng-template>
+                                            </p-carousel>
+                                        </div>
+                                    </div>
+
+                                </p-accordionTab>
+                                <p-accordionTab header="Property Type">
+                                    <div class="slider-Property">
+                                        <div class="col-md-12  col-xl-12 col-lg-12 col-md-12 ">
+                                            <p-carousel [value]="propertyTypesList" [numVisible]="5" [numScroll]="5"
+                                                [circular]="false" [showIndicators]="false"
+                                                [responsiveOptions]="carouselResponsiveOptions">
+
+                                                <ng-template let-propertyType pTemplate="item">
+
+                                                    <div [ngClass]="propertyType.selected ? 'property-active' : ''"
+                                                        class="product-item">
+                                                        <div class="propertyType">
+                                                            <div (click)="onClickPropertyType(propertyType)"
+                                                                class="product-item-content">
+                                                                <div class="p-mb-1">
+                                                                    <img src="{{propertyType.categoryImage}}"
+                                                                        [alt]="propertyType.name"
+                                                                        class="product-image" />
+                                                                </div>
+                                                                <div>
+                                                                    <h4 class="p-mb-1">{{propertyType.name}}</h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </ng-template>
+                                            </p-carousel>
+                                        </div>
+                                        <!-- <div class="Property-fillter">
+                                            <div class="image">
+                                                <img src="../../../assets/img/listings-list/icons/wed.png" alt="">
+                                                <h4 class="title"> Wedding Lawns</h4>
+                                            </div>
+
+                                        </div> -->
+                                    </div>
+                                </p-accordionTab>
+                                <p-accordionTab header="Guest Count">
+                                    <div class="Guest-fillter">
+                                        <ul>
+                                            <!-- {{filterCapacityArray|json}} -->
+                                            <li *ngFor="let capacity of filterCapacityArray">
+                                                <div class="p-field-checkbox">
+                                                    <p-checkbox binary="true" optionLabel="label"
+                                                        [(ngModel)]="capacity.status" [inputId]="capacity.id"
+                                                        [value]="capacity.status"
+                                                        (onChange)="onClickGuestCount(capacity, $event)"></p-checkbox>
+                                                    <!-- <p-checkbox name="group1" value="{{capacity.label}}"
+                                                        inputId="50"></p-checkbox> -->
+                                                    <label for="50">{{capacity.label}}</label>
+                                                </div>
+                                            </li>
+                                            <!-- <li>
+                                                <div class="p-field-checkbox">
+                                                    <p-checkbox name="group1" value="0 - 50" inputId="100"></p-checkbox>
+                                                    <label for="100">0 - 100</label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="p-field-checkbox">
+                                                    <p-checkbox name="group1" value="0 - 50" inputId="150"></p-checkbox>
+                                                    <label for="150">0 - 150</label>
+                                                </div>
+                                            </li> -->
+                                        </ul>
+                                    </div>
+
+                                </p-accordionTab>
+                                <p-accordionTab header="Food Packages">
+                                    <div class="food-Property">
+                                        <div class="col-md-12  col-xl-12  col-lg-12 col-md-12 ">
+                                            <p-carousel [value]="foodTypesList" [numVisible]="5" [numScroll]="5"
+                                                [circular]="false" [showIndicators]="false"
+                                                [responsiveOptions]="carouselResponsiveOptions">
+
+                                                <ng-template let-foodType pTemplate="item">
+
+                                                    <div [ngClass]="foodType.selected ? 'food-active' : ''"
+                                                        class="product-item">
+                                                        <div (click)="onClickFoodType(foodType)"
+                                                            class="product-item-content">
+                                                            <div class="p-mb-1">
+                                                                <img src="{{foodType.categoryImage}}"
+                                                                    [alt]="foodType.name" class="product-image" />
+                                                            </div>
+                                                            <div>
+                                                                <h4 class="p-mb-1">{{foodType.name}}</h4>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </ng-template>
+                                            </p-carousel>
+                                        </div>
+                                    </div>
+                                </p-accordionTab>
+                                <!-- <p-accordionTab header="Rating">
+                                    <p><p-chip label="Microsoft" icon="pi pi-microsoft" [removable]="true"></p-chip></p>
+                                </p-accordionTab> -->
+                            </p-accordion>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="acr-global-listing-controls">
+                        <div class="acr-listing-active-filters">
+                            <div *ngIf="selectedCategoriesNames.length > 0">
+                                <div class="div lisiting-page-chip" *ngFor="let category of selectedCategoriesNames">
+                                    <p-chip (onRemove)="onClickCategory(category)" label="{{category.name}}"
+                                        [removable]="true"></p-chip>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedPropertyTypeNames.length > 0">
+                                <div class="div lisiting-page-chip"
+                                    *ngFor="let propertyType of selectedPropertyTypeNames">
+                                    <p-chip (onRemove)="onClickPropertyType(propertyType)" label="{{propertyType.name}}"
+                                        [removable]="true"></p-chip>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedFoodTypeNames.length > 0">
+                                <div class="div lisiting-page-chip" *ngFor="let foodType of selectedFoodTypeNames">
+                                    <p-chip (onRemove)="onClickFoodType(foodType)" label="{{foodType.name}}"
+                                        [removable]="true"></p-chip>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="acr-toggle-views">
+                            <a [routerLink]="'/venue-list'" class="Check-Enquiry">
+                                <span class="mr-2">
+                                    <img src="../../../assets/img/listings-list/icons/Document.svg" alt="">
+                                </span>Check
+                                Enquiry
+                            </a>
+                            <a [routerLink]="'/venue-list'" class="Instant-Available"> <span class="mr-2">
+                                    <img src="../../../assets/img/listings-list/icons/Check.svg" alt="">
+                                </span>Instant
+                                Available</a>
+                        </div>
+                    </div><!---->
+
+                    <!-- <div class="right-slider-filter">
+                        <div class="col-md-11  col-xl-11  col-lg-10 col-md-10  filter-slider">
+                            <p-carousel [value]="categoryMenuList" [numVisible]="12" [numScroll]="12" [circular]="false"
+                                [showIndicators]="false" [responsiveOptions]="carouselResponsiveOptions">
+
+                                <ng-template let-categoryMenu pTemplate="item">
+
+                                    <div class="product-item">
+                                        <div (click)="onClickCategory(categoryMenu)" class="product-item-content">
+                                            <div class="p-mb-1">
+                                                <img src="{{categoryMenu.categoryImage}}" [alt]="categoryMenu.name"
+                                                    class="product-image" />
+                                            </div>
+                                            <div>
+                                                <h4 class="p-mb-1">{{categoryMenu.name}}</h4>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </ng-template>
+                            </p-carousel>
+                        </div>
+                        <div class="slider">
+                            <div class="product-item-content">
+                                <div class="p-mb-1"><img class="product-image"
+                                        src="http://103.204.131.217:3006/uploads/categoryPic/wedding.png" alt="Wedding">
+                                </div>
+                                <div>
+                                    <h4 class="p-mb-1">Wedding</h4>
+                                </div>
+                            </div>
+                        </div>
+                </div> -->
+
+                    <div class="listing listing-list venue_listing" *ngFor="let venue of venueList">
+
+                        <div class="listing-thumbnail">
+                            <p-galleria [(value)]="venue.venueImage" [responsiveOptions]="responsiveOptions"
+                                [containerStyle]="{'max-width': '50%;'}" [numVisible]="5" [circular]="false"
+                                [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true"
+                                [showItemNavigatorsOnHover]="true" [showIndicatorsOnItem]="true">
+                                <ng-template pTemplate="item" let-item>
+                                    <img [src]="item.venue_image_src" style="width:100%; display: block;" />
+                                </ng-template>
+                            </p-galleria>
+                            <div class="listing-badges">
+
+                                <span class="listing-badge Assured">
+
+                                    <span class="icon">
+
+                                    </span>
+                                    Instant Available</span>
+                            </div>
+
+                            <div class="listing-controls">
+                                <a class="favorite" href="#"><i class="pi  pi-heart"></i></a>
+
+                            </div>
+                        </div>
+                        <div class="listing-body"><!---->
+                            <div class="listing-author">
+                                <div class="listing-author-body">
+                                    <div class="left-side-details">
+                                        <h1>{{venue.name}}</h1>
+                                        <div class="address-list">
+                                            <ul>
+                                                <li>
+                                                    <div class="location details">
+                                                        <div class="icon">
+                                                            <img src="assets/img/svg/location.svg" alt="">
+                                                        </div>
+                                                        <div class="title">
+                                                            <h5>{{venue.cityname}}</h5>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="google-review">
+                                                    <div class="location details">
+                                                        <div class="icon">
+                                                            <img src="assets/img/svg/google.png" alt="">
+                                                        </div>
+                                                        <div class=" star">
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star"></i>
+                                                            </span>
+
+
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="google-review">
+                                                    <div class="location details">
+                                                        <div class="icon">
+                                                            <img src="assets/layout/images/pages/logo.png" alt="">
+                                                        </div>
+                                                        <div class=" star">
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star"></i>
+                                                            </span>
+
+
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="price-div">
+                                        <div *ngIf="venue.venuePrice" class="price-title">
+                                            <h4>1 Day Approx. Package</h4>
+                                            <h1>{{venue.venuePrice|currency:"INR"}}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="listing-body-bottom">
+                                    <!-- <h5 class="listing-title" [innerHtml]="venue.shortdescription">
+                                    </h5>
+                                    <span class="listing-price">{{venue.venuePrice| currency:"INR"}}
+                                        <span>/person</span></span> -->
+                                    <div class="acr-listing-icons">
+                                        <ul>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="media-left mr-3">
+                                                        <div class="icon" style="width: 30px; height: 30px;"><img
+                                                                src="assets/img/svg/area.svg">
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4>Area</h4>
+                                                        <h5>{{venue.area}} Sq. m.</h5>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="media-left mr-3">
+                                                        <div class="icon" style="width: 30px; height: 30px;"><img
+                                                                src="assets/img/svg/roundtable.svg">
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4>Capacity</h4>
+                                                        <h5>{{venue.capacity}} People</h5>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="media-left mr-3">
+                                                        <div class="icon" style="width: 30px; height: 30px;"><img
+                                                                src="assets/img/svg/seating-chair.svg">
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4>Round Table:</h4>
+                                                        <h5>{{venue.roundTable}}</h5>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="media-left mr-3">
+                                                        <div class="icon" style="width: 30px; height: 30px;"><img
+                                                                src="assets/img/svg/theater.svg">
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4>Theater Sitting:</h4>
+                                                        <h5>{{venue.theaterSitting}}</h5>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="listing-page-bottom">
+                                        <div class="div icons-slider">
+                                            <div *ngIf="venue.facilities.length > 0" class="div">
+                                                <p-carousel [value]="venue.facilities" styleClass="custom-carousel"
+                                                    [numVisible]="5" [numScroll]="5" [circular]="false"
+                                                    [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+                                                    <ng-template let-facilities pTemplate="item">
+                                                        <div class="product-item">
+                                                            <div class="media">
+                                                                <div class="service-icon">
+                                                                    <img src="{{facilities.icon}}" alt="">
+                                                                </div>
+                                                                <div class="media-body" *ngIf="facilities.title">
+                                                                    <h4 *ngIf="facilities.title">{{facilities.title}}
+                                                                    </h4>
+                                                                    <div *ngIf="facilities.details"
+                                                                        class="div class-status">
+                                                                        <span class="mr-2">Available</span> <img
+                                                                            src="assets/img/svg/check.svg" alt=""
+                                                                            class="icon">
+                                                                    </div>
+                                                                    <div *ngIf="!facilities.details"
+                                                                        class="div class-status">
+                                                                        <span class="mr-2"> Not Available</span> <img
+                                                                            src="assets/img/svg/check.svg" alt=""
+                                                                            class="icon">
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                    </ng-template>
+                                                </p-carousel>
+                                            </div>
+                                            <div *ngIf="venue.facilities.length == 0" class="div">
+                                                Facilities at banquet not available.
+                                            </div>
+                                        </div>
+                                        <div class="div">
+                                            <a (click)="getVenueDetails(venue.id)"
+                                                class=" btn-custom btn-sm secondary">View
+                                                Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <p-paginator [rows]="10" #paginator [totalRecords]="totalRecords"
+                            (onPageChange)="getVenueList($event, mode)"
+                            [rowsPerPageOptions]=" pagination"></p-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

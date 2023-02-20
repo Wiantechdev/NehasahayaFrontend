@@ -1,0 +1,345 @@
+<div class="card">
+    <p-tabView>
+        <p-tabPanel header="Order">
+            <div class="order-div">
+                <p-table #dt [value]="venueOrderList" [(selection)]="selectedvenueOrders" dataKey="id"
+                    styleClass="p-datatable-venueOrders" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
+                    [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+                    [globalFilterFields]="['name','country.name','representative.name','status']">
+                    <ng-template pTemplate="caption">
+                        <div class="table-header text-right">
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                    placeholder="Search order" />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <!-- <th style="width: 3rem"> <p-tableCheckbox [value]="venueOrder"></p-tableCheckbox></th> -->
+                            <th pSortableColumn="name" style="width: 20%">Venue Name <p-sortIcon
+                                    field="name"></p-sortIcon></th>
+                            <th pSortableColumn="country.name">Occasion <p-sortIcon field="country.name"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="date">Venue Date <p-sortIcon field="date"></p-sortIcon></th>
+                            <th pSortableColumn="representative.name">Price <p-sortIcon
+                                    field="representative.name"></p-sortIcon></th>
+
+                            <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+                            <!-- <th pSortableColumn="activity">Payment <p-sortIcon field="activity"></p-sortIcon></th> -->
+                            <th style="width: 10%">Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-venueOrder>
+                        <tr class="p-selectable-row">
+                            <!-- <td>
+                                <p-tableCheckbox [value]="venueOrder"></p-tableCheckbox>
+                            </td> -->
+                            <td>
+                                <span class="p-column-title">{{venueOrder.venueName}}</span>
+
+                                <div class="media venue-name-details">
+                                    <div class="image">
+                                        <img src="{{venueOrder.venueImage[0].venue_image_src}}" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="Venue-name">
+                                            <h4>{{venueOrder.venueName}}</h4>
+                                        </div>
+                                        <div class="Venue-location">
+                                            <h5><span><img
+                                                        src="assets/img/svg/location-icon.svg"></span>{{venueOrder.venuecity}}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td>
+                                <span class="p-column-title">{{venueOrder.categoryName}}</span>
+                                <span class="image-text">
+                                    <div class="occasion media">
+                                        <div class="image">
+                                            <img src="{{venueOrder.categoryImage}}" alt="">
+                                        </div>
+                                        <div class=" media-body m-auto">
+                                            <h4>Wedding</h4>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
+                            <td>
+
+                                {{venueOrder.duration[0]['occasionDate']| date:'d-MM-YYYY'}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Representative</span>
+                                <!-- <img src="{{representatives.image}}" alt=""> -->
+                                <span class="image-text">{{venueOrder.price| currency:'INR'}}</span>
+                            </td>
+
+                            <td>
+                                <span class="p-column-title">Status</span>
+                                <!-- <span
+                                    [class]="'venueOrder-badge status-' + venueOrder.status">{{venueOrder.status}}</span> -->
+                                <span *ngIf="venueOrder.status">Active</span>
+                                <span *ngIf="!venueOrder.status">In-Active</span>
+                            </td>
+                            <!-- <td>
+                                <span class="p-column-title">Activity</span>
+                                <div class="percent">{{venueOrder.activity}}</div>
+                                <p-progressBar [value]="venueOrder.activity" [showValue]="false"></p-progressBar>
+                            </td> -->
+                            <td style="text-align: center">
+                                <div class="action-buttons">
+                                    <button pButton type="button" class="p-button-secondary view" icon="pi pi-eye"
+                                        (click)="onVenueView(venueOrder)"></button>
+                                    <!-- <button pButton type="button" class="p-button-secondary comment"
+                                        icon="pi pi-comment"></button> -->
+
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="8">No venueOrders found.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Wishlist">
+            <ul>
+                <li>
+                    <div class="listing Wishlist-item">
+                        <div class="col-md-12 wishlisted-product">
+                            <div class="media">
+                                <div class="image listing-thumbnail">
+                                    <img style="width: 100%; display: block;"
+                                        src="http://103.204.131.217:3006/uploads/venuePic/e0c6d322-2919-4e77-97ba-36b332b1baf4.png"
+                                        class="ng-star-inserted">
+                                </div>
+                                <div class="col-md-12 media-body m-auto">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="listing Wishlist-item">
+                        <div class="listing-thumbnail">
+                            <img style="width: 100%; display: block;"
+                                src="http://103.204.131.217:3006/uploads/venuePic/e0c6d322-2919-4e77-97ba-36b332b1baf4.png"
+                                class="ng-star-inserted">
+                            <div class="listing-badges">
+                                <!-- <span class="listing-badge featured" *ngIf="item.star"> <i class="pi pi-star"></i>
+                                </span> -->
+                                <span class="listing-badge sale">Feature</span>
+                                <!-- <span class="listing-badge pending" *ngIf="item.pending">Pending</span>
+                                <span class="listing-badge rent" *ngIf="item.courtmarriage">Court Marriage</span> -->
+                            </div>
+                            <div class="listing-controls">
+                                <a href="#" class="favorite"><i class="pi pi-heart"></i></a>
+                                <!-- <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a> -->
+                            </div>
+                        </div>
+                        <div class="listing-body">
+                            <div class="listing-author">
+                                <div class="listing-author-body">
+                                    <div class="left-side-details">
+                                        <h1>Ajanta Party Hall</h1>
+                                        <div class="address-list">
+                                            <ul>
+                                                <li>
+                                                    <div class="location details">
+                                                        <div class="icon"><img src="assets/img/svg/location.svg" alt="">
+                                                        </div>
+                                                        <div class="title">
+                                                            <h5>Mumbai</h5>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="google-review">
+                                                    <div class="location details">
+                                                        <div class="icon"><img src="assets/img/svg/google.png" alt="">
+                                                        </div>
+                                                        <div class="star"><span><i
+                                                                    class="pi pi-star-fill"></i></span><span><i
+                                                                    class="pi pi-star-fill"></i></span><span><i
+                                                                    class="pi pi-star-fill"></i></span><span><i
+                                                                    class="pi pi-star"></i></span><span><i
+                                                                    class="pi pi-star"></i></span></div>
+                                                    </div>
+                                                </li>
+                                                <li class="google-review">
+                                                    <div class="location details">
+                                                        <div class="icon"><img src="assets/layout/images/pages/logo.png"
+                                                                alt="">
+                                                        </div>
+                                                        <div class="star"><span><i
+                                                                    class="pi pi-star-fill"></i></span><span><i
+                                                                    class="pi pi-star-fill"></i></span><span><i
+                                                                    class="pi pi-star-fill"></i></span><span><i
+                                                                    class="pi pi-star"></i></span><span><i
+                                                                    class="pi pi-star"></i></span></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="price-div">
+                                        <div class="price-title ng-star-inserted">
+                                            <h4>1 Day Approx. Package</h4>
+                                            <h1>₹100,000.00</h1>
+                                        </div><!--bindings={
+          "ng-reflect-ng-if": "100000"
+        }-->
+                                    </div>
+                                </div>
+                                <div class="listing-body-bottom">
+                                    <h5 class="listing-title">In Mumbai, there is a banquet facility
+                                        called Ajanta Party Hall that specialised in planning wedding festivities. They
+                                        make
+                                        your wedding into a grand celebration with first-rate service and knowledgeable
+                                        team.
+                                        This location is a great option for providing entertainment for your visitors. A
+                                        wedding
+                                        is incredibly sentimental, and Ajanta Party Hall offers all the services to its
+                                        guests
+                                        to make it even more special.</h5><span class="listing-price">₹100,000.00
+                                        <span>/person</span></span>
+                                    <div class="acr-listing-icons">
+                                        <ul>
+                                            <li>Area:1000</li>
+                                            <li>Capacity:500</li>
+                                            <li>Round Table:120</li>
+                                            <li>Theater Sitting:120</li>
+                                        </ul>
+                                    </div>
+                                    <div class="div">
+                                        <div class="div ng-star-inserted"><p-carousel styleclass="custom-carousel"
+                                                class="p-element" ng-reflect-style-class="custom-carousel"
+                                                ng-reflect-value="[object Object],[object Object"
+                                                ng-reflect-num-visible="3" ng-reflect-num-scroll="2"
+                                                ng-reflect-circular="false" ng-reflect-autoplay-interval="3000"
+                                                ng-reflect-responsive-options="[object Object],[object Object">
+                                                <div class="custom-carousel p-carousel p-component p-carousel-horizontal"
+                                                    ng-reflect-ng-class="[object Object]" id="pr_id_9">
+                                                    <!--bindings={}-->
+                                                    <div ng-reflect-ng-class="p-carousel-content"
+                                                        class="p-carousel-content">
+                                                        <div class="p-carousel-container"><button type="button"
+                                                                pripple=""
+                                                                class="p-ripple p-element p-carousel-prev p-link p-disabled ng-star-inserted"
+                                                                ng-reflect-ng-class="[object Object]" disabled=""><span
+                                                                    ng-reflect-ng-class="[object Object]"
+                                                                    class="p-carousel-prev-icon pi pi-chevron-left"></span><span
+                                                                    class="p-ink"></span></button><!--bindings={
+          "ng-reflect-ng-if": "true"
+        }-->
+                                                            <div class="p-carousel-items-content"
+                                                                ng-reflect-ng-style="[object Object]"
+                                                                style="height: auto;">
+                                                                <div class="p-carousel-items-container"
+                                                                    style="transform: translate3d(0%, 0px, 0px); transition: transform 500ms ease 0s;">
+                                                                    <!--bindings={}-->
+                                                                    <div ng-reflect-ng-class="[object Object]"
+                                                                        class="p-carousel-item p-carousel-item-active p-carousel-item-start ng-star-inserted">
+                                                                        <div class="product-item ng-star-inserted">
+                                                                            <div class="div ng-star-inserted"> A/C
+                                                                            </div><!--bindings={
+          "ng-reflect-ng-if": "A/C"
+        }-->
+                                                                            <div class="div ng-star-inserted"> Available
+                                                                            </div><!--bindings={
+          "ng-reflect-ng-if": "Hall Area"
+        }--><!--bindings={
+          "ng-reflect-ng-if": "false"
+        }-->
+                                                                        </div><!--bindings={
+          "ng-reflect-ng-template-outlet-context": "[object Object]"
+        }-->
+                                                                    </div>
+                                                                    <div ng-reflect-ng-class="[object Object]"
+                                                                        class="p-carousel-item p-carousel-item-active ng-star-inserted">
+                                                                        <div class="product-item ng-star-inserted">
+                                                                            <div class="div ng-star-inserted"> Parking
+                                                                            </div><!--bindings={
+          "ng-reflect-ng-if": "Parking"
+        }-->
+                                                                            <div class="div ng-star-inserted"> Available
+                                                                            </div><!--bindings={
+          "ng-reflect-ng-if": "20 Cars max"
+        }--><!--bindings={
+          "ng-reflect-ng-if": "false"
+        }-->
+                                                                        </div><!--bindings={
+          "ng-reflect-ng-template-outlet-context": "[object Object]"
+        }-->
+                                                                    </div>
+                                                                    <div ng-reflect-ng-class="[object Object]"
+                                                                        class="p-carousel-item p-carousel-item-active p-carousel-item-end ng-star-inserted">
+                                                                        <div class="product-item ng-star-inserted">
+                                                                            <div class="div ng-star-inserted"> Hall
+                                                                            </div><!--bindings={
+          "ng-reflect-ng-if": "Hall"
+        }-->
+                                                                            <div class="div ng-star-inserted"> Available
+                                                                            </div><!--bindings={
+          "ng-reflect-ng-if": "20 Cars max"
+        }--><!--bindings={
+          "ng-reflect-ng-if": "false"
+        }-->
+                                                                        </div><!--bindings={
+          "ng-reflect-ng-template-outlet-context": "[object Object]"
+        }-->
+                                                                    </div><!--bindings={
+          "ng-reflect-ng-for-of": "[object Object],[object Object"
+        }--><!--bindings={}-->
+                                                                </div>
+                                                            </div><button type="button" pripple=""
+                                                                class="p-ripple p-element p-carousel-next p-link p-disabled ng-star-inserted"
+                                                                ng-reflect-ng-class="[object Object]" disabled=""><span
+                                                                    ng-reflect-ng-class="[object Object]"
+                                                                    class="p-carousel-prev-icon pi pi-chevron-right"></span><span
+                                                                    class="p-ink"></span></button><!--bindings={
+          "ng-reflect-ng-if": "true"
+        }-->
+                                                        </div>
+                                                        <ul ng-reflect-ng-class="p-carousel-indicators p-reset"
+                                                            class="p-carousel-indicators p-reset ng-star-inserted">
+                                                            <li ng-reflect-ng-class="[object Object]"
+                                                                class="p-carousel-indicator p-highlight ng-star-inserted">
+                                                                <button type="button" ng-reflect-ng-class="p-link"
+                                                                    class="p-link"></button>
+                                                            </li><!--bindings={
+          "ng-reflect-ng-for-of": "0"
+        }-->
+                                                        </ul><!--bindings={
+          "ng-reflect-ng-if": "true"
+        }-->
+                                                    </div><!--bindings={}-->
+                                                </div>
+                                            </p-carousel></div><!--bindings={
+          "ng-reflect-ng-if": "true"
+        }--><!--bindings={
+          "ng-reflect-ng-if": "false"
+        }-->
+                                    </div>
+                                    <div class="div"><a class="btn-custom btn-sm secondary">View Details</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+
+        </p-tabPanel>
+
+    </p-tabView>
+</div>

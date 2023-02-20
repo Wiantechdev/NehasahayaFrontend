@@ -1,0 +1,101 @@
+.venue-name-details .Venue-name h4 {
+    margin-bottom: 0px !important;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 0.24px;
+    color: #495057;
+}
+
+.venue-name-details .image img {
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.venue-name-details {
+    margin-bottom: 0px !important;
+    align-items: center;
+}
+
+.Venue-location h5 {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: initial;
+}
+
+.Venue-location h5 img {
+    width: 18px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.occasion.media .media-body h4 {
+    margin-bottom: 0px;
+    letter-spacing: 0.28px;
+    color: #707070;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.occasion.media .image {
+    box-shadow: 0px 3px 6px #00000029;
+    opacity: 0.55;
+    padding: 5px;
+    border-radius: 50%;
+    object-fit: contain;
+    width: 47px;
+    height: 47px;
+    margin-right: 1rem;
+    padding: 5px;
+}
+
+.occasion.media .image img {
+    object-fit: contain;
+    height: 100%;
+    margin: 0px auto !important;
+    max-width: 100%;
+    width: 100% !important;
+}
+
+.action-buttons button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #64748B;
+    border-color: #64748B;
+    margin: 10px;
+}
+
+.action-buttons .comment {
+    border-color: #ED3237 !important;
+    background-color: #ED3237 !important;
+}
+
+.p-tabview .p-tabview-nav {
+    border: none !important;
+}
+
+/*Wish list */
+.Wishlist-item {
+    display: flex;
+}
+
+.Wishlist-item .listing-author {
+    flex-direction: column
+}
+
+.Wishlist-item .listing-author-body {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.Wishlist-item .address-list ul {
+    display: flex;
+    align-items: center;
+}
+
+.Wishlist-item .address-list .location.details {
+    display: flex;
+}

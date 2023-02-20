@@ -1,0 +1,186 @@
+.sigma_header .sigma_logo-wrapper .sigma_logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+header nav {
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.user_btn {
+  box-shadow: var(--shadow);
+  display: flex;
+  margin: 0px 0px 0px auto;
+  width: auto;
+  height: 47px;
+  border-radius: 33px;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid var(--grey-color);
+  background-color: #fff;
+
+}
+
+.user_btn svg {
+  margin-right: 10px;
+  fill: var(--darkgrey-color) !important;
+}
+
+.user_image {
+  width: 40px;
+  height: 40px;
+}
+
+.filter_icon img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.filter_icon {
+  display: contents;
+}
+
+.filter_icon .dir-ltr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  padding: 15px;
+}
+
+.sigma_header-bottom img {
+  width: 100%;
+}
+
+.sigma_header-bottom .container-fluid .col-md-1 {
+  max-width: 10%;
+  flex: 0 0 10%;
+}
+
+.sigma_header-bottom .container-fluid .col-md-11 {
+  max-width: 90%;
+  flex: 0 0 90%;
+}
+
+.p-tabview .p-tabview-nav {
+  justify-content: center;
+}
+
+
+ul.user-dropdown {
+
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 26px;
+  left: auto;
+  right: calc(0px - 10px);
+  border: 1px solid #f1f1f1;
+  border-radius: 0.4em;
+  min-width: 220px;
+  height: auto;
+  box-shadow: 0px 4px 12px rgb(0 0 0 / 10%);
+  padding: 12px 15px;
+  z-index: 999999;
+  background-color: #fff;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: 0.2s ease-in-out;
+  padding: 0px;
+}
+
+.mobile-version-header-top-list ul.user-dropdown {
+  align-items: flex-start;
+}
+
+ul.user-dropdown li a .fa {
+  font-size: 14px;
+  margin-right: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+ul.user-dropdown li a:hover {
+  color: #bf343e;
+}
+
+ul.user-dropdown li a:hover .fa {
+  padding-left: 5px;
+}
+
+.user-section:hover ul.user-dropdown {
+  opacity: 1;
+  overflow: visible;
+  display: inline-flex !important;
+}
+
+ul.user-dropdown li {
+  line-height: initial;
+
+  border-bottom: 1px solid #f1f1f1;
+  display: block;
+  width: 100%;
+}
+
+
+ul.user-dropdown li a {
+  font-size: 14px;
+  color: #7f7f7f;
+  padding: 12px 12px;
+  display: block;
+}
+
+.account-list ul {
+  margin-bottom: 0px !important;
+}
+
+.account-list ul li {
+  margin-top: 0px !important;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.account-list ul li:hover {
+  color: var(--main-color);
+}
+
+.mandatory-fields {
+  color: #FF0000;
+}
+
+@media (max-width: 768px) {
+  .navigation-search-bar .p-fluid .p-calendar .p-inputtext {
+    border-radius: 33px !important;
+    padding: 10px 30px;
+    padding-left: 60px;
+  }
+
+  .user_btn {
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+  }
+
+  .user_btn .dir-ltr {
+    display: none;
+  }
+
+  .sigma_header .sigma_header-controls ul .aside-toggle {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+  }
+
+  .live-location p-button button {
+    width: auto !important;
+  }
+
+}

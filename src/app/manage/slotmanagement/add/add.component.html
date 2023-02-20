@@ -1,0 +1,41 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="card">
+            <h5>Add Slot</h5>
+            <form [formGroup]="addSlotForm" *ngIf="this.addSlotForm" (ngSubmit)="onSubmit()">
+                <div class="p-fluid p-formgrid p-grid">
+                </div>
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-fluid p-col-4">
+                        <label for="binary">Slot Name</label>
+                        <input pInputText type="text" formControlName="slot" placeholder="Enter slot name"
+                            [ngClass]="{ 'is-invalid': submitted && f.slot.errors}" />
+                        <div *ngIf="submitted && f.slot.errors" class="invalid-feedback">
+                            <div *ngIf="f.slot.errors">Please enter slot name</div>
+                        </div>
+                    </div>
+
+                    <div class="p-fluid p-col-4">
+                        <label for="binary">Description</label>
+                        <textarea class="form-control" formControlName="description" placeholder="Enter description"
+                            rows=" 7"></textarea>
+
+                    </div>
+                    <div class=" p-field p-col-4">
+                        <label for="status">Status<span class="mandatory-fields">*</span></label>
+                        <p-dropdown inputId="status" [options]="statuses" formControlName="status" placeholder="Select"
+                            optionLabel="label" (ngModelChange)="onStatusSelect($event)"
+                            [ngClass]="{ 'is-invalid': submitted && f.status.errors}">
+                        </p-dropdown>
+                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                            <div *ngIf="f.status.errors.required">Please, Select Status</div>
+                        </div>
+                    </div>
+                </div>
+                <button pButton label="Save" icon="pi pi-check" class="p-button-text"></button>
+                <button pButton label="Reset" icon="pi pi-refresh" class="p-button-text"
+                    (click)="resetAddSlotForm()"></button>
+            </form>
+        </div>
+    </div>
+</div>

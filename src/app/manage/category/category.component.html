@@ -1,0 +1,181 @@
+<div class="p-grid table-demo">
+	<div class="p-col-12">
+		<div class="card">
+			<p-toast key="toastmsg"></p-toast>
+			<h5>Category Managment</h5>
+			<p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="addNewCategory()"></button>
+					<button pButton label="Clear Filters"  class="p-button-outlined p-mr-2 p-mb-2" icon="pi pi-filter-slash" (click)="clear()
+					"></button>
+                </ng-template>
+				<ng-template pTemplate="right">
+                    <button pButton pRipple label="Export" icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-help mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+		            <!-- <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button> -->
+                </ng-template>
+            </p-toolbar>
+            <div class="card">
+				<div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-2"> 
+						<label for="searchfield">Select Field</label>
+						<p-dropdown inputId="searchfield" [options]="searchBy" [(ngModel)]="searchby" placeholder="Select Field" optionLabel="label"></p-dropdown>
+					</div>
+					<div class="p-field p-col-3"> 
+						<label for="startdt">Start Date</label>
+						<p-calendar  monthNavigator="true" yearNavigator="true" yearRange="2022:2050"  [(ngModel)]="startDate" class="p-calendar" inputId="calendar" dateFormat="dd/mm/yy" [showIcon]="true" ></p-calendar>
+					</div>
+					<div class="p-field p-col-3"> 
+						<label for="enddt">End Date</label>
+						<p-calendar  monthNavigator="true" yearNavigator="true" yearRange="2022:2050"  [(ngModel)]="endDate" class="p-calendar" inputId="calendar"  dateFormat="dd/mm/yy" [showIcon]="true" ></p-calendar>
+					</div>
+					<div class="p-field p-col-3"> 						
+						<button pButton pRipple label="Search" class="p-button p-mr-1 p-mb-2" (click)="loadCategory($event)"></button>
+					</div>
+				</div>
+			</div>
+			<p-table #dt [value]="categoryList" [paginator]="true" [rows]="10" [lazy]="true" (onLazyLoad)="loadCategory($event)" 
+            [totalRecords]="totalRecords" [loading]="loading" [rowsPerPageOptions]="paginationOption"  paginatorPosition="top">
+				<!-- <ng-template pTemplate="caption">
+					<div class="p-d-flex p-flex-column p-flex-md-row table-header">						
+						<span class="p-input-icon-right">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+						    placeholder="Global Search"/>
+                        </span>                        
+					</div>
+				</ng-template> -->
+				<ng-template pTemplate="header" let-columns>
+					<tr>
+						<tr>
+							<th pSortableColumn="name">
+								<div class="p-d-flex p-jc-between p-ai-center">
+									Name
+									<p-sortIcon field="name"></p-sortIcon>
+								</div>
+							</th>
+							<!-- <th pSortableColumn="parent_category">
+								<div class="p-d-flex p-jc-between p-ai-center">
+									Parent Category
+									<p-sortIcon field="parent_category"></p-sortIcon>
+								</div>
+							</th>	 -->
+							<th pSortableColumn="created_at">
+								<div class="p-d-flex p-jc-between p-ai-center">
+									Date of Creation
+									<p-sortIcon field="created_at"></p-sortIcon>
+								</div>
+							</th>
+							<th pSortableColumn="created_by">
+								<div class="p-d-flex p-jc-between p-ai-center">
+									Created By
+									<p-sortIcon field="created_by"></p-sortIcon>
+								</div>
+							</th>
+							<th pSortableColumn="updated_at">
+								<div class="p-d-flex p-jc-between p-ai-center">
+									Last Modified On
+									<p-sortIcon field="updated_at"></p-sortIcon>
+								</div>
+							</th>
+							<th pSortableColumn="updated_by">
+								<div class="p-d-flex p-jc-between p-ai-center">
+									Modified By
+									<p-sortIcon field="updated_by"></p-sortIcon>
+								</div>
+							</th>
+							<th pSortableColumn="status">
+								<div class="p-d-flex p-jc-between p-ai-center">
+									Status
+									<p-sortIcon field="status"></p-sortIcon>
+								</div>
+							</th>
+							<th>
+								<div class="p-d-flex p-jc-between p-ai-center">
+									Action
+								</div>
+							</th>	
+						</tr>
+					<tr>
+						<th [ngSwitch]="name" >
+							<input pInputText type="text" (keyup.enter)="setDownloadFlag(); dt.filter($event.target.value, 'name', 'contains')" style="width: 90px;" [value]="dt.filters['name'] ? dt.filters['name'].value : ''" />
+						</th>
+						<!-- <th [ngSwitch]="parent_category" >
+							<input pInputText type="text" (keyup.enter)="dt.filter($event.target.value, 'parent_category', 'contains')" style="width: 90px;" [value]="dt.filters['parent_category'] ? dt.filters['parent_category'].value : ''" />
+						</th> -->
+						<th [ngSwitch]="created_at">
+							<p-calendar #pCalendarId  class="p-column-filter" inputId="calendar" dateFormat="dd/mm/yy" (onSelect)="setDownloadFlag(); dt.filter($event,'created_at', 'dateIs')" [showIcon]="true"  [(ngModel)]="calvalue" ></p-calendar>
+						</th>
+						<th [ngSwitch]="createdby">
+							<input  pInputText type="text" (keyup.enter)="setDownloadFlag(); dt.filter($event.target.value, 'createdby', 'contains')" style="width: 90px;" [value]="dt.filters['createdby'] ? dt.filters['createdby'].value : ''" />
+						</th>
+						<th [ngSwitch]="updated_at">
+							<p-calendar #pCalendarId  class="p-column-filter" inputId="calendar" dateFormat="dd/mm/yy" (onSelect)="setDownloadFlag(); dt.filter($event,'updated_at', 'dateIs')" [showIcon]="true"  [(ngModel)]="ucalvalue" ></p-calendar>
+						</th>
+						<th [ngSwitch]="updatedby">
+							<input  pInputText type="text" (keyup.enter)="setDownloadFlag(); dt.filter($event.target.value, 'updatedby', 'contains')" style="width: 90px;" [value]="dt.filters['updatedby'] ? dt.filters['updatedby'].value : ''" />
+						</th>
+						<th [ngSwitch]="status">
+							<p-dropdown #pDropDownId [options]="statuses" [style]="{'width':'80px'}" (onChange)="setDownloadFlag(); dt.filter($event.value, 'status', 'equals')" styleClass="p-column-filter" placeholder="Select Status" [showClear]="true">
+								<ng-template let-option pTemplate="item" >
+								 <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+								</ng-template>
+						   </p-dropdown>
+						</th>
+						<th>
+						</th>
+					  </tr>
+				</ng-template>
+				<ng-template pTemplate="body" let-category>
+					<tr class="p-selectable-row">
+						<td>
+							{{category.name}}
+						</td>
+						<!-- <td>
+							{{category.parent_category}}
+						</td> -->
+						<td>
+							{{category.created_at | date: 'MM/dd/yyyy'}}
+						</td>
+						<td>
+							{{category.createdBy}}
+						</td>
+						<td>
+							{{category.updated_at | date: 'MM/dd/yyyy'}}
+						</td>
+						<td>
+							{{category.updatedBy}}
+						</td>
+						<td>
+							<span *ngIf="category.status">
+								<p-tag styleClass="mr-2" severity="success" value="Active"></p-tag>
+							</span>
+							<span *ngIf="!category.status">
+								<p-tag severity="danger" value="In-Active"></p-tag>
+							  </span>
+							<p-inputSwitch [(ngModel)]="category.status" (onChange)="changeStatus(category)"></p-inputSwitch>
+						</td>						
+						<td>
+							<button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2" (click)="viewCategory(category.id)"></button>
+							<span *ngIf="!category.default_data">
+                              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editCategory(category.id)"></button>
+                              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCategory(category)"></button>
+						    </span>
+                        </td>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="emptymessage">
+					<tr>
+						<td colspan="7">Category not found.</td>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        In total there are {{totalRecords }} Category.
+                    </div>
+                </ng-template>
+			</p-table>
+		</div>
+		<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+	</div>	
+</div>
+

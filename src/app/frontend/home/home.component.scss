@@ -1,0 +1,21 @@
+.sigma_header-bottom-inner app-navigation .navigation-search-bar .p-fluid .top-search-bar-fillter .row .col-md-4 .p-element .p-multiselect {
+    border-radius: 33px 0px 0px 33px !important;
+}
+
+
+.post .post-title {
+    margin-bottom: 5px;
+}
+
+.post-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.banner-item-main {
+    top: 80px;
+}

@@ -1,0 +1,126 @@
+.user_btn {
+  box-shadow: var(--shadow);
+  display: flex;
+  margin: 0px 0px 0px auto;
+  width: 100%;
+  height: 60px;
+  border-radius: 33px;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid var(--grey-color);
+  background-color: #fff;
+  padding: 15px;
+
+}
+
+.user_btn .dir {
+  display: contents;
+  text-transform: uppercase;
+  line-height: 60px;
+  color: #888888;
+}
+
+.user_btn svg {
+  margin-right: 10px;
+  fill: var(--darkgrey-color) !important;
+}
+
+.user_image {
+  width: 40px;
+  height: 40px;
+}
+
+.filter_icon img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.filter_icon {
+  display: contents;
+}
+
+.filter_icon .dir-ltr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  padding: 15px;
+}
+
+.sigma_header-bottom-inner .row {
+  align-items: center;
+}
+
+.sigma_header-bottom-inner .row .col-md-1 {
+  display: flex;
+  align-items: center;
+}
+
+.top-search-bar-fillter .row {
+  margin: 0px !important;
+}
+
+.navigation-search-bar {
+  background: white;
+}
+
+.navigation-search-bar .top-search-bar-fillter {
+  width: 50%;
+  margin: auto;
+}
+
+.header-top-filter {
+  padding: 15px 0px;
+}
+
+.navigation-search-bar {
+  padding: 15px 0px;
+}
+
+.navigation-search-bar label.icons-image {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.col-md-4 {
+  position: relative;
+}
+
+.navigation-search-bar .p-button-rounded {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.filter-slider {
+  padding-top: 10px;
+}
+
+.filter-slider .product-item.active {
+  position: relative;
+}
+
+.filter-slider .product-item.active h4 {
+  color: var(--main-color) !important;
+}
+
+.filter-slider .product-item.active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+  height: 2px;
+  background: var(--main-color) !important
+}

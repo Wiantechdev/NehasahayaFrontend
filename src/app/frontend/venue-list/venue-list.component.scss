@@ -1,0 +1,199 @@
+.sigma_header-bottom-inner app-navigation .navigation-search-bar .p-fluid .top-search-bar-fillter .row .col-md-4 .p-element .p-multiselect {
+    border-radius: 33px 0px 0px 33px !important;
+}
+
+
+.filter-slider {
+    padding-top: 10px;
+}
+
+.filter-slider .product-item.active {
+    position: relative;
+}
+
+.filter-slider .product-item.active h4 {
+    color: red !important;
+}
+
+.filter-slider .product-item.active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    height: 2px;
+    background: red;
+
+}
+
+.filter_icon img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.filter_icon {
+    display: contents;
+}
+
+.filter_icon .dir-ltr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    padding: 15px;
+}
+
+.filter-slider .product-item.active {
+    position: relative;
+}
+
+.filter-slider .product-item.active h4 {
+    color: red !important;
+}
+
+.filter-slider .product-item.active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    height: 2px;
+    background: red;
+}
+
+.col-md-11 p-carousel h4 {
+    line-height: initial !important;
+}
+
+.user_btn {
+    box-shadow: var(--shadow);
+    display: flex;
+    margin: 0px 0px 0px auto;
+    width: 100%;
+    height: 60px;
+    border-radius: 33px;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid var(--grey-color);
+    background-color: #fff;
+    padding: 15px;
+}
+
+.container-fluid {
+    padding-left: 65px;
+    padding-right: 65px;
+}
+
+.filter-slider {
+    flex: 0 0 calc(100% - 130px);
+    max-width: calc(100% - 130px);
+}
+
+.col-md-11 p-carousel img {
+    height: 40px;
+}
+
+.col-md-11 p-carousel h4 {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 0px !important;
+    line-height: initial;
+}
+
+.col-md-11 p-carousel .product-item-content {
+    text-align: center;
+}
+
+
+
+.filter-icon-section {
+    display: flex;
+    align-items: center;
+}
+
+.sigma_header-bottom.filter-div {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    top: 90px;
+    height: 80px;
+    z-index: 1;
+    background: linear-gradient(360deg, #ededed, #ededed, #83888f12);
+    box-shadow: 5px 5px 5px #00000026, -5px -5px 5px #00000000;
+}
+
+.latestVenue_listing .col-md-12 .col-xl-3 {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+
+
+@media (max-width: 992px) {
+    .container-fluid {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+}
+
+@media (max-width: 1337px) {
+    .container-fluid {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+}
+
+@media (max-width: 1310px) {
+    .latestVenue_listing .col-md-12 .col-xl-3 {
+        flex: 0 0 33.33% !important;
+        max-width: 33.33% !important;
+    }
+
+}
+
+@media (max-width: 992px) {
+    .latestVenue_listing .col-md-12 .col-xl-3 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+
+    .navigation-search-bar .col-md-2 .p-button span {
+        display: none;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    .Assured-Venues .col-md-12.venue_listing {
+        padding: 0px !important;
+    }
+
+    .section.vendor-section .container-fluid {
+        padding: 0px !important;
+    }
+
+
+}
+
+@media (max-width: 625px) {
+    .latestVenue_listing .col-md-12 .col-xl-3 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+
+
+    .section {
+        padding: 30px 0px !important;
+    }
+
+}

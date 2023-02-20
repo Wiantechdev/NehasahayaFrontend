@@ -1,0 +1,1475 @@
+<div class="section-venuelisting-details " *ngIf=" venueDetails">
+    <div class="section listing-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="listing-content">
+                        <div class="left-bar-top-header">
+                            <div class="heading-and-title">
+                                <div class="heading">
+                                    <h1 *ngIf="venueDetails">{{venueDetails.name}}</h1>
+                                </div>
+                                <div class="header-details-top">
+                                    <div class="address-and-review">
+                                        <div class="address-list">
+                                            <ul>
+                                                <li>
+                                                    <div class="location details">
+                                                        <div class="icon">
+                                                            <img src="assets/img/svg/location.svg" alt="">
+                                                        </div>
+                                                        <div class="title">
+                                                            <h5>{{venueDetails.cityname}}</h5>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="google-review">
+                                                    <span class="review-title">Reviews :</span>
+                                                    <div class="location details">
+                                                        <div class="icon">
+                                                            <img src="assets/img/svg/google.png" alt="">
+                                                        </div>
+                                                        <div class=" star">
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="google-review">
+                                                    <div class="location details">
+                                                        <div class="icon">
+                                                            <img src="assets/layout/images/pages/logo.png" alt="">
+                                                        </div>
+                                                        <div class=" star">
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star-fill"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star"></i>
+                                                            </span>
+                                                            <span>
+                                                                <i class="pi pi-star"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <p-avatarGroup styleClass="mb-3">
+                                    <p-avatar *ngFor="let occasion of occasionArray" image="{{occasion.categoryImage}}"
+                                        size="large" shape="circle" pTooltip="{{occasion.name}}" tooltipPosition="top"
+                                        [style]="{'width':'50px', 'height':'50px','color': '#ffffff', 'background-color':'#fff' , 'box-shadow' : 'inset 0px 1px 2px #00000029, 0px 3px 6px #00000029'}"></p-avatar>
+                                </p-avatarGroup>
+                            </div>
+                        </div>
+                        <div class="left-side-body">
+                            <p-galleria id="venue-images-gallery" [(value)]="venueDetails.venueImage"
+                                [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '100%;'}"
+                                [numVisible]="8" [circular]="true" [showItemNavigators]="true" [showThumbnails]="true"
+                                [showIndicators]="false" [showItemNavigatorsOnHover]="true"
+                                [showIndicatorsOnHover]="true" thumbnailsPosition="bottom">
+                                <ng-template pTemplate="item" let-item>
+                                    <img [src]="item.venue_image_src" style="width:100%; display: block;" />
+                                </ng-template>
+                                <!-- <ng-template pTemplate="caption" let-item>
+                                    <h4 style="margin-bottom: .5rem; color: #ffffff;">test</h4>
+                                    <p></p>
+                                </ng-template> -->
+                                <ng-template pTemplate="thumbnail" let-item>
+                                    <div class="p-grid p-nogutter p-justify-center p-galleria-thumbnail-wrapper"
+                                        style="padding:10px;">
+                                        <img [src]=" item.venue_image_src" style="display: block;padding:10px;" />
+                                    </div>
+                                </ng-template>
+                            </p-galleria>
+                        </div>
+                        <div class="about-section">
+                            <div *ngIf="venueDetails" class="col-md-12">
+                                <div class="row justify-content-between">
+                                    <div class="col-12">
+                                        <div class="div-left">
+                                            <h2>About Venues</h2>
+                                            <p>
+                                                <span [innerHTML]="venueDetails.shortdescription"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="d-flex justify-content-end icons-view">
+                                            <li>
+                                                <div class="media">
+                                                    <div class="icon">
+                                                        <img class="mr-3" src="assets/img/svg/user-check.svg">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h5 class="mt-0">People Booked :
+                                                            <span>{{totalPeopleBooked}}</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="icon">
+                                                        <img class="mr-3" src="assets/img/svg/eye.svg">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h5 class="mt-0">Views : <span>{{currentViews}}</span></h5>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <hr class="border-top-first mt-3">
+                                <div class="row services-section">
+                                    <div class="col-md-3">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <div class="icon" style="width: 50px;height: 50px;">
+                                                    <img src="assets/img/svg/area.svg">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>Area</h4>
+                                                <h5>{{venueDetails.area}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <div class="icon" style="width: 50px;height: 50px;">
+                                                    <img src="assets/img/svg/roundtable.svg">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>People</h4>
+                                                <h5>{{venueDetails.capacity}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <div class="icon" style="width: 50px;height: 50px;">
+                                                    <img src="assets/img/svg/seating-chair.svg">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>Round Table</h4>
+                                                <h5>{{venueDetails.roundTable}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <div class="icon" style="width: 50px;height: 50px;">
+                                                    <img src="assets/img/svg/theater.svg">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4>Theater Seats</h4>
+                                                <h5>{{venueDetails.roundTable}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="div">
+                                    <span [innerHTML]="venueDetails.description"></span>
+                                </div>
+                                <hr>
+                                <div class="div">
+                                    <h2>Facilities at Banquet</h2>
+                                    <div *ngIf="facilitiesArray.length > 0" class="div">
+                                        <p-carousel [value]="facilitiesArray" styleClass="custom-carousel"
+                                            [numVisible]="3" [numScroll]="3" [circular]="false"
+                                            [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+                                            <ng-template let-facilities pTemplate="item">
+                                                <div class="product-item">
+                                                    <div class="card-room-service">
+                                                        <div class="image"> <img src="{{facilities.icon}}" alt=""></div>
+                                                        <div *ngIf="facilities.title" class="div-title">
+                                                            {{facilities.title}}
+                                                        </div>
+                                                        <div *ngIf="facilities.details" class="div-details">
+                                                            {{facilities.details}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </p-carousel>
+                                    </div>
+                                    <div *ngIf="facilitiesArray.length == 0" class="div">
+                                        Facilities at banquet not available.
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="div-moreinformation">
+                                    <h2>More Information</h2>
+                                    <div class="row">
+                                        <div class="col-md-12 list " *ngIf="venueDetails.capacityDescription">
+                                            <div class="media">
+                                                <div class="icon">
+                                                    <img src="assets/img/svg/Hall.svg" alt="">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="title">
+                                                        <h6>Hall Capacity</h6>
+                                                        <span>{{venueDetails.capacityDescription}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 list " *ngIf="venueDetails.acdetails">
+                                            <div class="media">
+                                                <div class="icon">
+                                                    <img src="assets/img/svg/AC.svg" alt="">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="title">
+                                                        <h6>AC</h6>
+                                                        <span>{{venueDetails.acdetails}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 list " *ngIf="venueDetails.parkingdetails">
+                                            <div class="media">
+                                                <div class="icon">
+                                                    <img src="assets/img/svg/parking.svg" alt="">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="title">
+                                                        <h6>Parking</h6>
+                                                        <span>{{venueDetails.parkingdetails}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 list " *ngIf="venueDetails.kitchendetails">
+                                            <div class="media">
+                                                <div class="icon">
+                                                    <img src="assets/img/svg/food.svg" alt="">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="title">
+                                                        <h6>Kitchen</h6>
+                                                        <span>{{venueDetails.kitchendetails}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 list " *ngIf="venueDetails.decorationdetails">
+                                            <div class="media">
+                                                <div class="icon">
+                                                    <img src="assets/img/svg/decore.svg" alt="">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="title">
+                                                        <h6>Decoration</h6>
+                                                        <span>{{venueDetails.decorationdetails}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 list " *ngIf="venueDetails.amenities">
+                                            <div class="media">
+                                                <div class="icon">
+                                                    <img src="assets/img/svg/Amminites.svg" alt="">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="title">
+                                                        <h6>Amenities</h6>
+                                                        <span>{{venueDetails.amenities}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 list " *ngIf="venueDetails.capacityDescription">
+                                            <div class="media">
+                                                <div class="icon">
+                                                    <img src="assets/img/svg/food.svg" alt="">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="title">
+                                                        <h6>Hall and Dining Capacity</h6>
+                                                        <span>{{venueDetails.capacityDescription}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div *ngIf="venueDetails.venueVideo">
+                                    <h2>Videos</h2>
+                                    <video class="" width="100%" controls="" loop="">
+                                        <!-- <source type="video/mp4" src="https://www.w3schools.com/html/mov_bbb.mp4" /> -->
+                                        <source type="video/mp4" src="{{venueDetails.venueVideo}}" />
+                                    </video>
+                                </div>
+                                <hr class="mb-2">
+                                <!---Review Section-->
+                                <div class="review-section-Bottom">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="pull-right">
+                                                    <select class="reviews-fillter" name="">
+                                                        <option value="">Top reviews</option>
+                                                        <option value="">Most recent</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 reiew-top-right-side">
+                                                <div class="row">
+                                                    <div class="col-md-12 headign-revies-section-k">
+                                                        <h3>Ratings and reviews </h3>
+                                                    </div>
+                                                    <div class="col-md-6 mg-auto rTig">
+                                                        <div class="col-md-12 review-main-p">
+                                                            <div class="review-div">
+                                                                <div class="Ratings-point col-md-12">
+                                                                    <h1>4.5</h1>
+                                                                </div>
+                                                                <div class="rateing-star col-md-12">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span><i class="pi pi-star-fill"></i></span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span><i class="pi pi-star-fill"></i></span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span><i class="pi pi-star-fill"></i></span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span><i class="pi pi-star"></i></span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span><i class="pi pi-star"></i></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="review-counting col-md-12">
+                                                                        <h2>65</h2>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 progress-rating P-ratr">
+                                                        <ul>
+                                                            <li>
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <span>5</span>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar" role="progressbar"
+                                                                                aria-valuenow="40" aria-valuemin="0"
+                                                                                aria-valuemax="100"
+                                                                                style="max-width: 40%">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <span>4</span>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar" role="progressbar"
+                                                                                aria-valuenow="80" aria-valuemin="0"
+                                                                                aria-valuemax="100"
+                                                                                style="max-width: 80%">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <span>3</span>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar" role="progressbar"
+                                                                                aria-valuenow="30" aria-valuemin="0"
+                                                                                aria-valuemax="100"
+                                                                                style="max-width: 30%">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <span>2</span>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar" role="progressbar"
+                                                                                aria-valuenow="20" aria-valuemin="0"
+                                                                                aria-valuemax="100"
+                                                                                style="max-width: 20%">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <span>1</span>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar" role="progressbar"
+                                                                                aria-valuenow="50" aria-valuemin="0"
+                                                                                aria-valuemax="100"
+                                                                                style="max-width: 50%">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-12 rate-this-item">
+                                                        <h5>Rate this items</h5>
+                                                        <p>Share your opinon with other users </p>
+                                                        <ul class="blank-star">
+                                                            <ul>
+                                                                <li>
+                                                                    <span><i class="pi pi-star"></i></span>
+                                                                </li>
+                                                                <li>
+                                                                    <span><i class="pi pi-star"></i></span>
+                                                                </li>
+                                                                <li>
+                                                                    <span><i class="pi pi-star"></i></span>
+                                                                </li>
+                                                                <li>
+                                                                    <span><i class="pi pi-star"></i></span>
+                                                                </li>
+                                                                <li>
+                                                                    <span><i class="pi pi-star"></i></span>
+                                                                </li>
+                                                            </ul>
+                                                        </ul>
+                                                        <p class="reviw-button-text">
+                                                            <a href="#" class="write-button-review" data-toggle="modal"
+                                                                data-target="#review-popup">Write review and rate</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--rihgt-sidee section-->
+                                            <div class="col-md-8 mian-li-review-details">
+                                                <h3>Most important opinions </h3>
+                                                <!--Mian review list -->
+                                                <ul>
+                                                    <li class="reviw-user-main">
+                                                        <div class="review-comment-show">
+                                                            <div class="media">
+                                                                <img class="align-self-center mr-3"
+                                                                    src="assets/img/svg/user-image.svg"
+                                                                    alt="customer-profile">
+                                                                <div class="media-body">
+                                                                    <div class="customer-name">
+                                                                        <h4>Ivonne Andrea</h4>
+                                                                    </div>
+                                                                    <div class="rateing-star-customer">
+                                                                        <ul>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--Customer-text-review-->
+                                                            <div class="customer-comment">
+                                                                <h5><strong>The Best!</strong></h5>
+                                                                <p>Hello everyone. I just want to tell you that so far
+                                                                    it has
+                                                                    been an excellent experience for me. The best online
+                                                                    venues booking website without hesitation.</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="reviw-user-main">
+                                                        <div class="review-comment-show">
+                                                            <div class="media">
+                                                                <img class="align-self-center mr-3"
+                                                                    src="assets/img/svg/user-image.svg"
+                                                                    alt="customer-profile">
+                                                                <div class="media-body">
+                                                                    <div class="customer-name">
+                                                                        <h4>Ivonne Andrea</h4>
+                                                                    </div>
+                                                                    <div class="rateing-star-customer">
+                                                                        <ul>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--Customer-text-review-->
+                                                            <div class="customer-comment">
+                                                                <h5><strong>The Best!</strong></h5>
+                                                                <p>Hello everyone. I just want to tell you that so far
+                                                                    it has
+                                                                    been an excellent experience for me. The best online
+                                                                    venues booking website without hesitation.</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="reviw-user-main">
+                                                        <div class="review-comment-show">
+                                                            <div class="media">
+                                                                <img class="align-self-center mr-3"
+                                                                    src="assets/img/svg/user-image.svg"
+                                                                    alt="customer-profile">
+                                                                <div class="media-body">
+                                                                    <div class="customer-name">
+                                                                        <h4>Ivonne Andrea</h4>
+                                                                    </div>
+                                                                    <div class="rateing-star-customer">
+                                                                        <ul>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--Customer-text-review-->
+                                                            <div class="customer-comment">
+                                                                <h5><strong>The Best!</strong></h5>
+                                                                <p>Hello everyone. I just want to tell you that so far
+                                                                    it has
+                                                                    been an excellent experience for me. The best online
+                                                                    venues booking website without hesitation.</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="reviw-user-main">
+                                                        <div class="review-comment-show">
+                                                            <div class="media">
+                                                                <img class="align-self-center mr-3"
+                                                                    src="assets/img/svg/user-image.svg"
+                                                                    alt="customer-profile">
+                                                                <div class="media-body">
+                                                                    <div class="customer-name">
+                                                                        <h4>Ivonne Andrea</h4>
+                                                                    </div>
+                                                                    <div class="rateing-star-customer">
+                                                                        <ul>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--Customer-text-review-->
+                                                            <div class="customer-comment">
+                                                                <h5><strong>The Best!</strong></h5>
+                                                                <p>Hello everyone. I just want to tell you that so far
+                                                                    it has
+                                                                    been an excellent experience for me. The best online
+                                                                    venues booking website without hesitation.</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="reviw-user-main">
+                                                        <div class="review-comment-show">
+                                                            <div class="media">
+                                                                <img class="align-self-center mr-3"
+                                                                    src="assets/img/svg/user-image.svg"
+                                                                    alt="customer-profile">
+                                                                <div class="media-body">
+                                                                    <div class="customer-name">
+                                                                        <h4>Ivonne Andrea</h4>
+                                                                    </div>
+                                                                    <div class="rateing-star-customer">
+                                                                        <ul>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--Customer-text-review-->
+                                                            <div class="customer-comment">
+                                                                <h5><strong>The Best!</strong></h5>
+                                                                <p>Hello everyone. I just want to tell you that so far
+                                                                    it has
+                                                                    been an excellent experience for me. The best online
+                                                                    venues booking website without hesitation.</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="reviw-user-main">
+                                                        <div class="review-comment-show">
+                                                            <div class="media">
+                                                                <img class="align-self-center mr-3"
+                                                                    src="assets/img/svg/user-image.svg"
+                                                                    alt="customer-profile">
+                                                                <div class="media-body">
+                                                                    <div class="customer-name">
+                                                                        <h4>Ivonne Andrea</h4>
+                                                                    </div>
+                                                                    <div class="rateing-star-customer">
+                                                                        <ul>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span><i
+                                                                                        class="pi pi-star-fill"></i></span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--Customer-text-review-->
+                                                            <div class="customer-comment">
+                                                                <h5><strong>The Best!</strong></h5>
+                                                                <p>Hello everyone. I just want to tell you that so far
+                                                                    it has
+                                                                    been an excellent experience for me. The best online
+                                                                    venues booking website without hesitation.</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <!--Mian review list close -->
+                                                <button type="button" name="button" class="reviw-more-button">See All
+                                                    Reviw</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---Review Section close -->
+                                <hr>
+                                <div>
+                                    <h2>Where you'll be</h2>
+                                </div>
+                                <div class="mapouter">
+                                    <div class="gmap_canvas">
+                                        <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="https://maps.google.com/maps?width=600&height=400&hl=en&q=mumbai&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                                    </div>
+                                    <style>
+                                        .mapouter {
+                                            position: relative;
+                                            text-align: right;
+                                            width: 100%;
+                                            height: 100%;
+                                        }
+
+                                        .gmap_canvas {
+                                            overflow: hidden;
+                                            background: none !important;
+                                            width: 100%;
+                                            height: 100%;
+                                        }
+
+                                        .gmap_iframe {
+                                            width: 100% !important;
+                                            height: 500px !important;
+                                        }
+                                    </style>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 sidebar-right">
+                    <p-toast key="toastMsg"></p-toast>
+                    <div class="sidebar sticky-sidebar">
+                        <div class="sidebar-widget">
+                            <div class="Price">
+                                <div class="real-rice">
+                                    <h4>
+                                        <!-- <del> ₹49, 372</del>  -->
+                                        <span *ngIf="isLoggedIn" class="original-price">
+                                            {{venuePrice|currency:'INR'}}</span>
+                                    </h4>
+                                </div>
+                                <!-- <div class="newdate disable">
+                                    <h3>More than one day</h3>
+                                    <p-inputSwitch [(ngModel)]="checked1"></p-inputSwitch>
+                                </div> -->
+                            </div>
+                            <div class="col-md-12 right-collapsed-form filter-div">
+                                <p-accordion [multiple]="true">
+                                    <p-accordionTab header="Occasion" class="occasion-tab">
+                                        <ng-template pTemplate="header">
+                                            <div class="selected-list col-md-12 p-0">
+                                                <div *ngFor="let occasion of selectedOccasionNames" class="div">
+                                                    <span>{{occasion.name}}</span>&nbsp;&nbsp;
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <div class="occasion-list">
+                                            <div class="col-md-12 p-0">
+                                                <div *ngIf="occasionArray.length > 0" class="div">
+                                                    <p-carousel [value]="occasionArray" styleClass="custom-carousel"
+                                                        [numVisible]="4" [numScroll]="4" [circular]="false"
+                                                        [autoplayInterval]="3000"
+                                                        [responsiveOptions]="responsiveOptions">
+                                                        <ng-template let-occasion pTemplate="item">
+                                                            <div (click)="onClickOccasion(occasion)"
+                                                                class="product-item">
+                                                                <div [ngClass]="occasion.selected ? 'occasion-active' : ''"
+                                                                    class="Vendore">
+                                                                    <p-avatarGroup styleClass="mb-4">
+                                                                        <p-avatar image="{{occasion.categoryImage}}"
+                                                                            size=" large" shape="circle"
+                                                                            pTooltip={{occasion.name}}
+                                                                            tooltipPosition="top"
+                                                                            [style]="{'width':'50px', 'height':'50px','color': '#ffffff', 'background-color':'#fff' , 'box-shadow' : 'inset 0px 1px 2px #00000029, 0px 3px 6px #00000029'}"></p-avatar>
+                                                                    </p-avatarGroup>
+                                                                    <div class="div-title">
+                                                                        <h5>{{occasion.name}}</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-carousel>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="occasionArray.length == 0" class="div">
+                                                Facilities at banquet not available.
+                                            </div>
+                                        </div>
+                                    </p-accordionTab>
+                                    <!-- <div class="col-md-12 login-div login-popup">
+                                        <div class="login-popup" [class.toggled]="classToggled">
+                                            <div class="forms">
+                                                <form [formGroup]="loginForm" *ngIf="this.loginForm"
+                                                    (ngSubmit)="onSubmit()">
+                                                    <h2 class="titles-login p-pt-0 ">Login </h2>
+                                                    <div class="form-group">
+                                                        <label>Name</label>
+                                                        <input type="text" formControlName="name"
+                                                            class="form-control form-control-light"
+                                                            placeholder="Enter your name" type="text"
+                                                            [ngClass]="{ 'is-invalid': loginFormSubmitted && loginf.email.errors }"
+                                                            required>
+                                                        <div *ngIf="loginFormSubmitted && loginf.email.errors"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="loginf.email.errors.required">Name is
+                                                                required</div>
+                                                            <div *ngIf="loginf.email.errors.email">Enter valid
+                                                                Name</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="email" formControlName="email"
+                                                            class="form-control form-control-light"
+                                                            placeholder="Enter your Email" type="text"
+                                                            [ngClass]="{ 'is-invalid': loginFormSubmitted && loginf.email.errors }"
+                                                            required>
+                                                        <div *ngIf="loginFormSubmitted && loginf.email.errors"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="loginf.email.errors.required">Email is
+                                                                required</div>
+                                                            <div *ngIf="loginf.email.errors.email">Enter valid
+                                                                email address</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Mobile</label>
+                                                        <input formControlName="number"
+                                                            class="form-control form-control-light"
+                                                            placeholder="Enter your Mobile Number" type="number"
+                                                            [ngClass]="{ 'is-invalid': loginFormSubmitted && loginf.password.errors }"
+                                                            autocomplete="on" required>
+                                                        <div *ngIf="loginFormSubmitted && loginf.password.errors"
+                                                            class="invalid-feedback">
+                                                            <div *ngIf="loginf.password.errors.required">
+                                                                Number is required</div>
+                                                            <div *ngIf="loginf.password.errors.minlength">
+                                                                Mobile Number must be at least 10 characters
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="popup-button-btn form-group">
+                                                        <label></label>
+                                                        <div class="buttons-div">
+                                                            <p-button type="submit" label="Login"
+                                                                class="p-button-text  secondary"
+                                                                (click)="toggleField()"></p-button>
+                                                            <div class=" forgot-password">
+                                                                <a href="# "> Forgot
+                                                                    Password?</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="otp-div">
+                                                <div class="col-md-12">
+                                                    <h2 class="titles-login p-pb-0 p-pt-0">Mobile Phone Verification
+                                                    </h2>
+                                                </div>
+                                                <h5 class="p-mb-0">Enter the code we just send on your mobile phone</h5>
+                                                <h5> <span>+911234567890</span> <span class=" icon"></span>
+                                                </h5>
+                                                <div class="form-group row m-0 otp-field">
+                                                    <div class="p-col-2 p-0">
+                                                        <input type="number" class="form-control form-control-light">
+                                                    </div>
+                                                    <div class="p-col-2 p-0">
+                                                        <input type="number" class="form-control form-control-light">
+                                                    </div>
+                                                    <div class="p-col-2 p-0">
+                                                        <input type="number" class="form-control form-control-light">
+                                                    </div>
+                                                    <div class="p-col-2 p-0">
+                                                        <input type="number" class="form-control form-control-light">
+                                                    </div>
+                                                    <div class="p-col-2 p-0">
+                                                        <input type="number" class="form-control form-control-light">
+                                                    </div>
+                                                    <div class="p-col-2 p-0">
+                                                        <input type="number" class="form-control form-control-light">
+                                                    </div>
+                                                </div>
+                                                <div class="otp-resent text-center mt-3">
+                                                    <span class="d-block mobile-text">Don't receive the
+                                                        code?</span><span
+                                                        class="font-weight-bold text-danger cursor">Resend</span>
+                                                </div>
+                                                <div class="col-md-12 mt-3 mb-3 p-pb-3">
+                                                    <div class="submit text-center ">
+                                                        <p-button label="submit"
+                                                            class="p-button-text  secondary"></p-button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <p-accordionTab *ngIf="availabilityList != ''" header="Date & Time ">
+                                        <ng-template pTemplate="header">
+                                            <div class="selected-list col-md-12 p-0">
+                                                <span>{{selectedDate}}</span> &nbsp;<span>{{selectedSlotsName}}</span>
+                                            </div>
+                                        </ng-template>
+                                        <!-- {{availabilityList|json}} -->
+                                        <div class="date-time">
+                                            <div class="row mb-3">
+                                                <div class="col-md-auto d-flex">
+                                                    <div class="newdate ">
+                                                        <label class="mb-0">Single Day</label>
+                                                        <p-inputSwitch [(ngModel)]="checked1"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md">
+                                                    <div class="p-0  Eventdate">
+                                                        <p-calendar yearNavigator="true" [defaultDate]="defaultDate"
+                                                            yearRange="{{yearRange}}" [(ngModel)]="defaultDate"
+                                                            [minDate]="minDateValue" [maxDate]="maxDateValue"
+                                                            placeholder="Select date" class="p-calendar w-100"
+                                                            dateFormat="dd-mm-yy" [showIcon]="true"
+                                                            (onSelect)="onClickEventDate($event)"></p-calendar>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 p-0 time-slots">
+                                            <!-- <label class="mb-0">Time Slot</label> -->
+                                            <p-tabView *ngIf="availabilityList != ''">
+                                                <!-- <div class=""> -->
+                                                <!-- <div class="">
+                                                    {{availability|json}}
+                                                    <!-- <ul *ngFor="let item of availability">
+                                                        <li>
+                                                            <button pButton type="button" label="{{item.slot}}"></button>
+                                                        </li>
+                                                    </ul> 
+                                </div> -->
+                                                <p-tabPanel *ngFor="let availability of availabilityList"
+                                                    header="{{availability[0]}}">
+                                                    <div class=" list-of-button">
+                                                        <ul *ngFor="let item of availability[1]">
+                                                            <li>
+                                                                <button [ngClass]="item.selected ? 'slot-active' : ''"
+                                                                    pButton type="button"
+                                                                    (click)="onSlotClick(item)">{{item.slot}}</button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </p-tabPanel>
+                                                <!-- </div> -->
+                                                <!-- <p-tabPanel header="Day 2">
+                                                    <div class="list-of-button">
+                                                        <ul>
+                                                            <li>
+                                                                <button pButton type="button" label="MORNING"></button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </p-tabPanel>
+                                                <p-tabPanel header="Day 3">
+                                                    <div class="list-of-button">
+                                                        <ul>
+                                                            <li>
+                                                                <button pButton type="button" label="MORNING"></button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </p-tabPanel> -->
+                                            </p-tabView>
+                                            <p-tabView *ngIf="availabilityList == ''" header="Time Slot ">
+                                                No slot available.
+                                            </p-tabView>
+                                        </div>
+                                    </p-accordionTab>
+                                    <p-accordionTab header="Guest ">
+                                        <ng-template pTemplate="header">
+                                            <div class="selected-list col-md-12 p-0">
+                                                <span>{{selectedGuestName}}</span>
+                                            </div>
+                                        </ng-template>
+                                        <!-- <p-dropdown [options]="filterCapacityArray"
+                                            (onChange)="onCapacitySelect($event)" optionLabel="label"
+                                            placeholder="Select a Guest Count">
+                                        </p-dropdown> -->
+                                        <div class="col-md-12 p-0 Guest-count-drop">
+                                            <!-- <div class="col-md-12 p-0">
+                                                <label>Select</label>
+                                            </div> -->
+                                            <p-dropdown [options]="filterCapacityArray"
+                                                placeholder="Select Guest Capacity" optionLabel="label"
+                                                (onChange)="onCapacitySelect($event)"></p-dropdown>
+                                        </div>
+                                    </p-accordionTab>
+                                    <p-accordionTab header="package ">
+                                        <ng-template pTemplate="header">
+                                            <div class="selected-list col-md-12 p-0">
+                                                <span>{{selectedFoodTypeName}}</span>
+                                            </div>
+                                            <div *ngIf="selectedFoodMenuTypes.length > 0" class="food-menue">
+                                                <div *ngFor="let foodMenuTypes of selectedFoodMenuTypes"
+                                                    class="selected-list mr-3">
+                                                    <span>{{foodMenuTypes}}</span>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                        <div class="foodlist">
+                                            <ul *ngFor="let foodType of foodTypesList">
+                                                <li (click)="onFoodTypeClick(foodType)">
+                                                    <div class="food-image">
+                                                        <img src="{{foodType.categoryImage}}" [alt]="foodType.name"
+                                                            class="product-image" />
+                                                    </div>
+                                                    <div class="name">
+                                                        <span>{{foodType.name}}</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div *ngIf="showFoodMenuTypesList" class="package-selection">
+                                            <div class="col-md-12 p-0">
+                                                <div *ngIf="foodMenuTypes.length > 0" class="div">
+                                                    <p-carousel [value]="foodMenuTypes" styleClass="custom-carousel"
+                                                        [numVisible]="5" [numScroll]="5" [circular]="true"
+                                                        [autoplayInterval]="3000"
+                                                        [responsiveOptions]="responsiveOptions">
+                                                        <ng-template let-foodMenuType pTemplate="item">
+                                                            <div (click)="onFoodMenuTypeClick(foodMenuType)"
+                                                                [ngClass]="foodMenuType.selected ? 'food-Menu-type-active' : ''"
+                                                                class="product-item">
+                                                                <div class="Vendore">
+                                                                    <p-avatarGroup styleClass="mb-3">
+                                                                        <p-avatar
+                                                                            image="{{staticPath}}/categoryPic/plate.svg"
+                                                                            size=" large" shape="circle"
+                                                                            pTooltip="{{foodMenuType.value|currency:'INR'}}"
+                                                                            tooltipPosition="top"
+                                                                            [style]="{'width':'50px', 'height':'50px','color': '#ffffff', 'background-color':'#fff' , 'box-shadow' : 'inset 0px 1px 2px #00000029, 0px 3px 6px #00000029'}"></p-avatar>
+                                                                    </p-avatarGroup>
+                                                                    <div class="div-title">
+                                                                        <h5>{{foodMenuType.slug}}</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-carousel>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </p-accordionTab>
+                                </p-accordion>
+                            </div>
+                            <div class="rooms col-md-12 disable">
+                                <ul>
+                                    <li>
+                                        <div class="heading">
+                                            <h5>Would you like a room?</h5>
+                                        </div>
+                                        <div class="forms">
+                                            <div class="row">
+                                                <div class="p-field-radiobutton">
+                                                    <p-radioButton name="city" value="Chicago" [(ngModel)]="city"
+                                                        inputId="city1"></p-radioButton>
+                                                    <label for="city1">Yes</label>
+                                                </div>
+                                                <div class="p-field-radiobutton">
+                                                    <p-radioButton name="city" value="Los Angeles" [(ngModel)]="city"
+                                                        inputId="city2"></p-radioButton>
+                                                    <label for="city2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class=" Decore col-md-12 ">
+                                <h4>Decor</h4>
+                                <div *ngIf="decorArray.length > 0" class="decorelist">
+                                    <ul>
+                                        <li *ngFor="let decor of decorArray">
+                                            <div [ngClass]="decor.selected ? 'decor-active' : ''"
+                                                (click)="onClickDecor(decor)">
+                                                <img src="{{decor.image}}">
+                                                <label>{{decor.name}} :
+                                                </label>
+                                                <span *ngIf="isLoggedIn">{{decor.price|currency:'INR'}}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div *ngIf="decorArray.length == 0">Decor not available.</div>
+                            </div>
+                            <div class=" Vendore col-md-12 ">
+                                <h4>Vendor</h4>
+                                <div class="vendor-list">
+                                    <div class="col-md-12">
+                                        <div *ngIf="vendorList.length > 0" class="div">
+                                            <p-carousel [value]="vendorList" styleClass="custom-carousel"
+                                                [numVisible]="4" [circular]="false"
+                                                [responsiveOptions]="responsiveOptions">
+                                                <ng-template let-vendor pTemplate="item">
+                                                    <div [ngClass]="vendor.selected ? 'vendor-active' : ''"
+                                                        (click)="onClickVendor(vendor)" class="product-item">
+                                                        <div class="Vendore">
+                                                            <p-avatarGroup styleClass="mb-4">
+                                                                <p-avatar image="{{vendor.categoryImage}}" size=" large"
+                                                                    shape="circle" pTooltip={{vendor.name}}
+                                                                    tooltipPosition="top"
+                                                                    [style]="{'width':'50px', 'height':'50px','color': '#ffffff', 'background-color':'#fff' , 'box-shadow' : 'inset 0px 1px 2px #00000029, 0px 3px 6px #00000029'}"></p-avatar>
+                                                            </p-avatarGroup>
+                                                            <div class="div-title">
+                                                                <h5>{{vendor.name}}</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-template>
+                                            </p-carousel>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="vendorList.length == 0" class="div">
+                                        Vendor at banquet not available.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ADVISER">
+                                <div class="media sidebar-author listing-agent"><a
+                                        href="/themes/templatemoster/angular/whyknot/vendor-details/1"><img
+                                            src="assets/img/agents/1.jpg" alt="Event-planner"></a>
+                                    <div class="media-body">
+                                        <h6><a href="/themes/templatemoster/angular/whyknot/vendor-details/1">A
+                                                PERSONALISED </a>
+                                        </h6>
+                                        <span>EVENT ADVISER</span>
+                                    </div>
+                                    <div class="media-right mr-3">
+                                        <h6>
+                                            FREE
+                                        </h6>
+                                    </div>
+                                    <div class="media-right mr-3">
+                                        <h6>
+                                            <i class="pi pi-check-circle"></i>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-12 total-amount-div">
+                                <div>
+                                    <h4>Total Amount <span *ngIf="isLoggedIn">{{totalVenuePrice|currency:'INR'}}</span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-12 list-checkbox">
+                                <ul>
+                                    <li *ngFor="let feature of featureArray">
+                                        <div [ngClass]="feature.status ? '' : 'disable'" class="p-field-radiobutton">
+                                            <p-radioButton (onClick)="onFeatureClick(feature)"
+                                                [(ngModel)]="selectedFeature" [value]="feature"></p-radioButton>
+                                            <label for="feature">{{feature.label}}</label>
+                                        </div>
+                                    </li>
+                                    <!-- <li>
+                                        <div class="p-field-radiobutton">
+                                            <p-radioButton name="Book" value="Book" [(ngModel)]="city"
+                                                inputId="Book"></p-radioButton>
+                                            <label for="Book">Book Visit (Before Booking The Venue)</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="p-field-radiobutton">
+                                            <p-radioButton name="city" value="Chicago" [(ngModel)]="city"
+                                                inputId="BookNow"></p-radioButton>
+                                            <label for="BookNow">Book Now</label>
+                                        </div>
+                                    </li> -->
+                                </ul>
+                            </div>
+                            <div class="col-md-12 Send-btn ">
+                                <button *ngIf="showSendEnquiries" (click)="onClickSendEnquiries()" pButton
+                                    class="btn btn-custom w-100">Send Enquiry
+                                </button>
+                            </div>
+                            <!-- <p-button (click)="schedulevisit()" icon="pi pi-external-link" label="Show"></p-button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dialog header="Schedule A Visit" [(visible)]="displayModal" [modal]="true" [style]="{width: '38vw'}"
+    [breakpoints]="{'960px': '60vw', '640px': '100vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <div class="login-popup Schedule-a-visit">
+        <div class="forms">
+            <p>
+                It's always good to visit a place before booking a venue
+            </p>
+            <form>
+                <div class="forms">
+                    <div class=" form-group form-row">
+                        <div class="col">
+                            <label>Date</label>
+                            <!-- <input type="text" formControlName="firstName" class="form-control"
+                                placeholder="First name*" value="" required> -->
+                        </div>
+                        <div class="col">
+                            <label>Time</label>
+                            <!-- <input type="text" formControlName="lastName" placeholder="Last Name*" class="form-control"
+                                required> -->
+                        </div>
+                    </div>
+                    <div class=" form-group form-row">
+                        <div class="col">
+                            <div class="p-field-checkbox">
+                                <p-checkbox binary="true" inputId="binary"></p-checkbox>
+                                <label for="binary">I agree to below mentioned terms and conditions.</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-button">
+                    <p-button type="submit" label="Register" class="p-button-text"></p-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</p-dialog>
+<p-dialog [closable]="true" [(visible)]="loginRegisterModal" [modal]="true" [style]="{width: '38vw'}"
+    [breakpoints]="{'960px': '60vw', '640px': '100vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <div class="login-popup">
+        <p-tabView [(activeIndex)]="activeIndex">
+            <p-tabPanel header="Login">
+                <div class="forms">
+                    <form [formGroup]="loginForm" *ngIf="this.loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" formControlName="email" class="form-control form-control-light"
+                                placeholder="Enter your Email" type="text"
+                                [ngClass]="{ 'is-invalid': loginFormSubmitted && loginf.email.errors }" required>
+                            <div *ngIf="loginFormSubmitted && loginf.email.errors" class="invalid-feedback">
+                                <div *ngIf="loginf.email.errors.required">Email is required</div>
+                                <div *ngIf="loginf.email.errors.email">Enter valid email address</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input formControlName="password" class="form-control form-control-light"
+                                placeholder="Enter your password" type="password"
+                                [ngClass]="{ 'is-invalid': loginFormSubmitted && loginf.password.errors }"
+                                autocomplete="on" required>
+                            <div *ngIf="loginFormSubmitted && loginf.password.errors" class="invalid-feedback">
+                                <div *ngIf="loginf.password.errors.required">Password is required</div>
+                                <div *ngIf="loginf.password.errors.minlength">Password must be at least 6 characters
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popup-button">
+                            <p-button type="submit" label="Login" class="p-button-text  secondary"></p-button>
+                        </div>
+                    </form>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Register">
+                <div class="forms">
+                    <form [formGroup]="signUpForm" *ngIf="this.signUpForm" (ngSubmit)="onSignupSubmit()">
+                        <div class="forms">
+                            <div class=" form-group form-row">
+                                <div class="col">
+                                    <label>Name <span class="mandatory-fields">*</span></label>
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Enter your name" value="" required
+                                        [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.name.errors.required">Name is required</div>
+                                        <div *ngIf="f.name.errors">Name is not valid</div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col">
+                                    <label>Last Name</label>
+                                    <input type="text" formControlName="lastName" placeholder="Last Name*"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" required>
+                                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                        <div *ngIf="f.lastName.errors">Only Alphabets allowed</div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="form-row form-group">
+                                <div class="col">
+                                    <label>Email<span class="mandatory-fields">*</span></label>
+                                    <input type="email" formControlName="email" placeholder="Enter email address"
+                                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Enter valid email address</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label>Mobile Number<span class="mandatory-fields">*</span></label>
+                                    <p-inputNumber mode="decimal" inputId="mobileNumber" [useGrouping]="false"
+                                        formControlName="mobileNumber"
+                                        [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" required
+                                        placeholder="Enter your mobile number">
+                                    </p-inputNumber>
+                                    <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+                                        <div *ngIf="f.mobileNumber.errors.required">Mobile number is required
+                                        </div>
+                                        <div *ngIf="f.mobileNumber.errors">Invalid Mobile number
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row form-group">
+                                <div class="col">
+                                    <label>Password<span class="mandatory-fields">*</span></label>
+                                    <input type="password" formControlName="password" placeholder="Enter your password*"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" value=""
+                                        autocomplete="on" required>
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                        <div *ngIf="f.password.errors">Password should contains at least 1 digit, 1
+                                            lowercase, 1 uppercase, 1 symbol.
+                                            Length between 6 to 20.</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label>Confirm Password<span class="mandatory-fields">*</span></label>
+                                    <input type="password" formControlName="confirmPassword"
+                                        placeholder="Confirm Password*" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+                                        autocomplete="on" required>
+                                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                        <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required
+                                        </div>
+                                        <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row form-group BirthDate ">
+                                <div class="col">
+                                    <label>Birth Date</label>
+                                    <p-calendar appendTo="body" class="form-control" formControlName="dob"
+                                        [showIcon]="true" inputId="icon" placeholder="Select birth date"
+                                        [minDate]="birthMinValue" [maxDate]="birthMaxValue" monthNavigator="true"
+                                        yearNavigator="true" yearRange="{{birthYearRange}}" class="p-calendar"
+                                        inputId="calendar" [defaultDate]="birthYearDefaultDate" dateFormat="dd/mm/yy"
+                                        [showIcon]="true"></p-calendar>
+                                </div>
+                                <!-- <div class="col Gender">
+                                    <label>Gender</label>
+                                    <div *ngFor="let gender of genders" class="">
+                                        <p-radioButton [inputId]="gender.key" formControlName="gender" [value]="gender"
+                                            [(ngModel)]="selectedGender" (onClick)="onGenderSelect(gender, $event)">
+                                        </p-radioButton>&nbsp;&nbsp;
+                                        <label [for]="gender.key">{{gender.name}}</label>&nbsp;&nbsp;
+                                    </div>
+                                    <div class="mandatory-feilds" *ngIf="showGenderError">
+                                        Please, Select Gender.
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="popup-button">
+                            <p-button type="submit" label="Register" class="p-button-text"></p-button>
+                        </div>
+                    </form>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</p-dialog>
+<p-galleria [(value)]="decorImages" [(visible)]="showDecorImages" [responsiveOptions]="responsiveOptions"
+    [containerStyle]="{'max-width': '850px'}" [numVisible]="7" [circular]="true" [fullScreen]="true"
+    [showItemNavigators]="true" [showThumbnails]="false" [baseZIndex]="100000">
+    <ng-template pTemplate="item" let-item>
+        <img [src]="item.venue_image_src" style="width:100%; height:100%; display: block;" />
+    </ng-template>
+</p-galleria>

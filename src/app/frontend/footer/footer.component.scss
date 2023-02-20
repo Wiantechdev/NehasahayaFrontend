@@ -1,0 +1,19 @@
+// .address{
+//     max-width: 300px;
+// }
+.sigma_footer-top .sigma_footer-logo{flex: 0 0 20%;}
+.sigma_footer-top .footer-item{flex: 0 0 50%;  padding-left: 30px;}
+.footer-item-news{flex: 0 0 30%;}
+.sigma_footer-top a, .sigma_footer-top p ,.sigma_footer-top li{
+    color: #cccccc!important;
+}
+.widget-title{
+    color: #fff;
+}
+.sigma_footer .sigma_footer-top{
+    align-items: flex-start;
+}
+
+.sigma_footer-top .sigma_footer-logo li a{
+color: var(--main-color)!important;
+}
